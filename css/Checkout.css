@@ -1,0 +1,61 @@
+.anchorButton 
+{
+    display: flex;         
+    align-items: center;   
+    text-decoration: none; 
+    overflow: hidden;     
+    width: fit-content;   
+
+}
+
+.brandLogo
+{
+    height: 50px;        
+    width: auto;         
+    z-index: 2;           
+    position: relative;   
+    background-color: #ffffff; 
+
+}
+
+#brandName 
+{
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #0A6C74;        
+    
+    margin-left: -160px;   
+    opacity: 0;            
+    transition: all 0.8s ease-out; 
+    z-index: 1;     
+
+}
+
+#brandName.active 
+{
+    margin-left: 15px;
+    opacity: 1;
+
+}
+
+#prevButton
+{
+    font-family: 'Arial', sans-serif;
+    color: black;
+    font-size: 10px;
+}
+
+#prev
+{
+    margin-left: 25px;
+
+}
+
+#paymentMethod
+{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-family: 'Arial', sans-serif;
+    color: black;
+}

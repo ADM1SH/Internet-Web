@@ -3,26 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <title>Checkout Page</title>
+        <link rel="stylesheet" href="css/Checkout.css">
+
     </head>
     <body>
-        <h1>Checkout</h1>
-        <form action="/submit-order" method="POST">
-            <label for="name">Full Name:</label><br>
-            <input type="text" id="name" name="name" required><br><br>
+        <a href="index.html" class="anchorButton">
+            <img src="images/LogoTopLeft.png" alt="images/LogoTopLeft.png" class="brandLogo">
+            <span id="brandName">Probook Sports</span>
 
-            <label for="address">Shipping Address:</label><br>
-            <input type="text" id="address" name="address" required><br><br>
+        </a>
+        <hr>
 
-            <label for="payment">Payment Method:</label><br>
-            <select id="payment" name="payment" required>
-                <option value="credit-card">Credit Card</option>
-                <option value="paypal">PayPal</option>
-                <option value="bank-transfer">Bank Transfer</option>
-            </select><br><br>
+        <a href="PREVIOUSPAGE.html" class="anchorButton" id="prev">
+            <pre id="prevButton"><  Previous Page</pre>
+        </a>
 
-            <input type="submit" value="Place Order">
-        </form>
+        <div id="paymentMethod">
+            <h2>Payment Method</h2>
+
+            <form action="paymentType.php" method="post">
+                
+
+            </form>
+            
+        </div>
+
+        <script src="js/Checkout.js"></script>
+
     </body>
+
 </html>
 
---ni test code from ai, i didnt do this--
