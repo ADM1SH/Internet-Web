@@ -21,11 +21,37 @@
         <div id="paymentMethod">
             <h2>Payment Method</h2>
 
-            <form action="paymentType.php" method="post">
-                
+            <form action="paymentType.php" method="post" id="paymentForm">
+                <div class="payOpt">
+                <input type="radio" id="creditCard" name="paymentType" value="Credit Card">
+                <label for="creditCard">Credit Card</label><br>
+                </div>
+
+                <div class="payOpt">
+                <input type="radio" id="debitCard" name="paymentType" value="Debit Card">
+                <label for="debitCard">Debit Card</label><br>
+                </div>
+
+                <div class="payOpt">
+                <input type="radio" id="netBanking" name="paymentType" value="Net Banking">
+                <label for="netBanking">Net Banking</label><br>
+                </div>
+
+                <div class="payOpt">
+                <input type="radio" id="upi" name="paymentType" value="UPI">
+                <label for="upi">UPI</label><br><br>
+                </div>
+
+                <input type="submit" value="Proceed to Pay" id="payButton">
 
             </form>
             
+        </div>
+
+        <div>
+            <h3>Cancellation Policy</h3>
+            <h4>Can</h4>
+
         </div>
 
         <script src="js/Checkout.js"></script>
