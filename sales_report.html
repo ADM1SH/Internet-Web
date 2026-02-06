@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Report - Probook Sports</title>
+    <link rel="stylesheet" href="css/Checkout.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #0A6C74;
+            margin-left: 20px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .report-summary {
+            background-color: #eef9fa;
+            padding: 15px;
+            border: 1px solid #0A6C74;
+            margin-bottom: 20px;
+            width: fit-content;
+            min-width: 300px;
+        }
+
+        .report-summary h2 {
+            margin-top: 0;
+            color: #0A6C74;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0A6C74;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .refresh-btn {
+            background-color: #0A6C74;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="anchorButton">
+        <img src="images/LogoTopLeft.png" alt="Probook Sports Logo" class="brandLogo">
+        <span id="brandName">Probook Sports</span>
+    </a>
+    <hr>
+
+    <div class="container">
+        <h1>Sales Report</h1>
+
+        <div class="report-summary">
+            <h2>Overall Revenue</h2>
+            <div class="total-amount" id="grandTotal">RM 0.00</div>
+            <p>Calculated from all <strong>Confirmed</strong> bookings.</p>
+        </div>
+
+        <button class="refresh-btn" onclick="generateReport()">Refresh Data</button>
+
+        <h2>Monthly Breakdown</h2>
+        <table id="salesTable">
+            <thead>
+                <tr>
+                    <th>Month/Year</th>
+                    <th>Total Bookings</th>
+                    <th>Income (RM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Generated via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/Checkout.js"></script>
+    <script src="js/sales_report.js"></script>
+</body>
+</html>
