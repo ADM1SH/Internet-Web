@@ -8,7 +8,7 @@ window.onload = function() {
 
     document.getElementById("bookingForm").onsubmit = function(e) {
         e.preventDefault();
-        
+
         var facility = document.getElementById("bookFacility").value;
         var date = document.getElementById("bookDate").value;
         var time = document.getElementById("bookTime").value;
@@ -16,14 +16,14 @@ window.onload = function() {
         var index = document.getElementById("bookingIndex").value;
 
         var bookingList = JSON.parse(localStorage.getItem("bookingList"));
-        
+
         bookingList[index].facility = facility;
         bookingList[index].date = date;
         bookingList[index].time = time;
         bookingList[index].status = status;
 
         localStorage.setItem("bookingList", JSON.stringify(bookingList));
-        
+
         hideEditForm();
         loadBookings();
         alert("Booking updated successfully!");
@@ -34,7 +34,7 @@ function loadFacilitiesDropdown() {
     var facilities = JSON.parse(localStorage.getItem("facilityList")) || [];
     var select = document.getElementById("bookFacility");
     select.innerHTML = "";
-    
+
     for (var i = 0; i < facilities.length; i++) {
         var opt = document.createElement("option");
         opt.value = facilities[i].name;
@@ -45,8 +45,7 @@ function loadFacilitiesDropdown() {
 
 function loadBookings() {
     var bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
-    
-    // Default mock data if empty
+
     if (bookingList.length === 0) {
         bookingList = [
             { customer: "John Doe", facility: "Badminton Court 1", date: "2026-02-10", time: "10:00", status: "Confirmed" },
@@ -61,19 +60,18 @@ function loadBookings() {
     for (var i = 0; i < bookingList.length; i++) {
         var book = bookingList[i];
         var row = tbody.insertRow();
-        
+
         row.insertCell(0).innerHTML = book.customer;
         row.insertCell(1).innerHTML = book.facility;
         row.insertCell(2).innerHTML = book.date;
         row.insertCell(3).innerHTML = book.time;
-        
+
         var statusCell = row.insertCell(4);
         statusCell.innerHTML = book.status;
         statusCell.className = "status-" + book.status.toLowerCase();
-        
+
         var actionCell = row.insertCell(5);
-        
-        // Edit Button
+
         var editBtn = document.createElement("button");
         editBtn.innerHTML = "Edit";
         editBtn.className = "edit-btn";
@@ -82,8 +80,7 @@ function loadBookings() {
                 showEditForm(idx);
             };
         })(i);
-        
-        // Cancel Button (Shortcut to status update)
+
         var cancelBtn = document.createElement("button");
         cancelBtn.innerHTML = "Cancel";
         cancelBtn.className = "cancel-btn";
@@ -92,7 +89,7 @@ function loadBookings() {
                 cancelBooking(idx);
             };
         })(i);
-        
+
         actionCell.appendChild(editBtn);
         actionCell.appendChild(cancelBtn);
     }
@@ -101,14 +98,14 @@ function loadBookings() {
 function showEditForm(index) {
     var bookingList = JSON.parse(localStorage.getItem("bookingList"));
     var book = bookingList[index];
-    
+
     document.getElementById("displayCustomer").innerHTML = book.customer;
     document.getElementById("bookFacility").value = book.facility;
     document.getElementById("bookDate").value = book.date;
     document.getElementById("bookTime").value = book.time;
     document.getElementById("bookStatus").value = book.status;
     document.getElementById("bookingIndex").value = index;
-    
+
     document.getElementById("editFormContainer").style.display = "block";
     window.scrollTo(0,0);
 }

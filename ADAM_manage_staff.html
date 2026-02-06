@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Manage Facilities - Probook Sports</title>
+    <title>Manage Staff - Probook Sports</title>
     <link rel="stylesheet" href="css/Checkout.css">
     <style>
         body {
@@ -20,7 +20,7 @@
             padding: 20px;
         }
 
-        .facility-form {
+        .staff-form {
             background-color: #f9f9f9;
             padding: 15px;
             border: 1px solid #ccc;
@@ -28,7 +28,7 @@
             width: 50%;
         }
 
-        .facility-form h2 {
+        .staff-form h2 {
             margin-top: 0;
             font-size: 1.2rem;
             color: #333;
@@ -40,7 +40,7 @@
 
         .form-group label {
             display: inline-block;
-            width: 140px;
+            width: 100px;
             font-weight: bold;
         }
 
@@ -49,6 +49,7 @@
             width: 200px;
         }
 
+        /* Table styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -70,20 +71,6 @@
             background-color: #f2f2f2;
         }
 
-        .edit-btn {
-            background-color: #f0ad4e;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 3px;
-            margin-right: 5px;
-        }
-
-        .edit-btn:hover {
-            background-color: #ec971f;
-        }
-
         .delete-btn {
             background-color: #ff4d4d;
             color: white;
@@ -97,7 +84,7 @@
             background-color: #cc0000;
         }
 
-        .save-btn {
+        .add-btn {
             background-color: #0A6C74;
             color: white;
             border: none;
@@ -106,7 +93,7 @@
             font-weight: bold;
         }
 
-        .save-btn:hover {
+        .add-btn:hover {
             background-color: #08565c;
         }
     </style>
@@ -120,51 +107,47 @@
     <hr>
 
     <div class="container">
-        <h1>Manage Facilities (Items/Services)</h1>
+        <h1>Manage Staff</h1>
 
-        <div class="facility-form">
-            <h2 id="formTitle">Add/Update Facility</h2>
-            <form id="facilityForm">
-                <input type="hidden" id="facilityIndex" value="">
+        <div class="staff-form">
+            <h2>Add New Staff Member</h2>
+            <form id="addStaffForm">
                 <div class="form-group">
-                    <label for="facName">Facility Name:</label>
-                    <input type="text" id="facName" placeholder="e.g. Badminton Court 1" required>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="facType">Type:</label>
-                    <select id="facType">
-                        <option value="Badminton">Badminton</option>
-                        <option value="Tennis">Tennis</option>
-                        <option value="Futsal">Futsal</option>
-                        <option value="Basketball">Basketball</option>
+                    <label for="role">Role:</label>
+                    <select id="role" required>
+                        <option value="Receptionist">Receptionist</option>
+                        <option value="Maintenance Crew">Maintenance Crew</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="facPrice">Price per Hour (RM):</label>
-                    <input type="number" id="facPrice" step="0.50" placeholder="e.g. 20.00" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
                 </div>
-                <button type="submit" class="save-btn" id="submitBtn">Save Facility</button>
-                <button type="button" class="add-btn" style="background-color:#666;" onclick="resetForm()">Clear</button>
+                <button type="submit" class="add-btn">Add Staff</button>
             </form>
         </div>
 
-        <h2>Current Facilities & Pricing</h2>
-        <table id="facilitiesTable">
+        <h2>Current Staff List</h2>
+        <table id="staffTable">
             <thead>
                 <tr>
-                    <th>Facility Name</th>
-                    <th>Type</th>
-                    <th>Price (RM/Hour)</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Data via JS -->
+                <!-- Staff records will be added here via JS -->
             </tbody>
         </table>
     </div>
 
     <script src="js/Checkout.js"></script>
-    <script src="js/manage_facilities.js"></script>
+    <script src="js/ADAM_manage_staff.js"></script>
 </body>
 </html>

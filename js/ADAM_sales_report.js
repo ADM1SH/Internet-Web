@@ -10,7 +10,6 @@ function generateReport() {
     var bookings = JSON.parse(localStorage.getItem("bookingList")) || [];
     var facilities = JSON.parse(localStorage.getItem("facilityList")) || [];
 
-    // Create a price map for quick lookup
     var prices = {};
     for (var i = 0; i < facilities.length; i++) {
         prices[facilities[i].name] = parseFloat(facilities[i].price);
@@ -22,9 +21,7 @@ function generateReport() {
     for (var j = 0; j < bookings.length; j++) {
         var b = bookings[j];
 
-        // Only count Confirmed bookings for revenue
         if (b.status === "Confirmed") {
-            // Extract month and year from YYYY-MM-DD
             var dateParts = b.date.split("-");
             var year = dateParts[0];
             var monthNum = parseInt(dateParts[1]);
@@ -46,14 +43,11 @@ function generateReport() {
         }
     }
 
-    // Update Grand Total display
     document.getElementById("grandTotal").innerHTML = "RM " + grandTotal.toFixed(2);
 
-    // Update Table
     var tbody = document.querySelector("#salesTable tbody");
     tbody.innerHTML = "";
 
-    // Convert keys to array and sort (optional, but good for display)
     var labels = Object.keys(monthlySales);
 
     if (labels.length === 0) {

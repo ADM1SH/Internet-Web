@@ -7,7 +7,7 @@ window.onload = function() {
 
     document.getElementById("playerForm").onsubmit = function(e) {
         e.preventDefault();
-        
+
         var name = document.getElementById("playerName").value;
         var phone = document.getElementById("playerPhone").value;
         var email = document.getElementById("playerEmail").value;
@@ -15,7 +15,7 @@ window.onload = function() {
         var index = document.getElementById("playerIndex").value;
 
         var playerList = JSON.parse(localStorage.getItem("playerList")) || [];
-        
+
         var playerData = {
             name: name,
             phone: phone,
@@ -24,15 +24,13 @@ window.onload = function() {
         };
 
         if (index === "") {
-            // Add new
             playerList.push(playerData);
         } else {
-            // Update existing
             playerList[index] = playerData;
         }
 
         localStorage.setItem("playerList", JSON.stringify(playerList));
-        
+
         resetForm();
         loadPlayers();
         alert("Player information saved!");
@@ -41,8 +39,7 @@ window.onload = function() {
 
 function loadPlayers() {
     var playerList = JSON.parse(localStorage.getItem("playerList")) || [];
-    
-    // Default data if empty
+
     if (playerList.length === 0) {
         playerList = [
             { name: "John Doe", phone: "012-3456789", email: "john@example.com", status: "Active" },
@@ -57,15 +54,14 @@ function loadPlayers() {
     for (var i = 0; i < playerList.length; i++) {
         var player = playerList[i];
         var row = tbody.insertRow();
-        
+
         row.insertCell(0).innerHTML = player.name;
         row.insertCell(1).innerHTML = player.phone;
         row.insertCell(2).innerHTML = player.email;
         row.insertCell(3).innerHTML = player.status;
-        
+
         var actionCell = row.insertCell(4);
-        
-        // Edit button
+
         var editBtn = document.createElement("button");
         editBtn.innerHTML = "Edit";
         editBtn.className = "edit-btn";
@@ -74,8 +70,7 @@ function loadPlayers() {
                 editPlayer(idx);
             };
         })(i);
-        
-        // Delete button
+
         var deleteBtn = document.createElement("button");
         deleteBtn.innerHTML = "Delete";
         deleteBtn.className = "delete-btn";
@@ -84,7 +79,7 @@ function loadPlayers() {
                 deletePlayer(idx);
             };
         })(i);
-        
+
         actionCell.appendChild(editBtn);
         actionCell.appendChild(deleteBtn);
     }
@@ -93,13 +88,13 @@ function loadPlayers() {
 function editPlayer(index) {
     var playerList = JSON.parse(localStorage.getItem("playerList"));
     var player = playerList[index];
-    
+
     document.getElementById("playerName").value = player.name;
     document.getElementById("playerPhone").value = player.phone;
     document.getElementById("playerEmail").value = player.email;
     document.getElementById("playerStatus").value = player.status;
     document.getElementById("playerIndex").value = index;
-    
+
     document.getElementById("formTitle").innerHTML = "Update Player: " + player.name;
     document.getElementById("submitBtn").innerHTML = "Update Player";
 }

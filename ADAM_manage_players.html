@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Manage Staff - Probook Sports</title>
+    <title>Manage Players - Probook Sports</title>
     <link rel="stylesheet" href="css/Checkout.css">
     <style>
         body {
@@ -20,7 +20,7 @@
             padding: 20px;
         }
 
-        .staff-form {
+        .player-form {
             background-color: #f9f9f9;
             padding: 15px;
             border: 1px solid #ccc;
@@ -28,7 +28,7 @@
             width: 50%;
         }
 
-        .staff-form h2 {
+        .player-form h2 {
             margin-top: 0;
             font-size: 1.2rem;
             color: #333;
@@ -40,16 +40,15 @@
 
         .form-group label {
             display: inline-block;
-            width: 100px;
+            width: 120px;
             font-weight: bold;
         }
 
         .form-group input, .form-group select {
             padding: 5px;
-            width: 200px;
+            width: 220px;
         }
 
-        /* Table styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -71,6 +70,20 @@
             background-color: #f2f2f2;
         }
 
+        .edit-btn {
+            background-color: #f0ad4e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        .edit-btn:hover {
+            background-color: #ec971f;
+        }
+
         .delete-btn {
             background-color: #ff4d4d;
             color: white;
@@ -84,7 +97,7 @@
             background-color: #cc0000;
         }
 
-        .add-btn {
+        .save-btn {
             background-color: #0A6C74;
             color: white;
             border: none;
@@ -93,7 +106,7 @@
             font-weight: bold;
         }
 
-        .add-btn:hover {
+        .save-btn:hover {
             background-color: #08565c;
         }
     </style>
@@ -107,47 +120,54 @@
     <hr>
 
     <div class="container">
-        <h1>Manage Staff</h1>
+        <h1>Manage Players (Members)</h1>
 
-        <div class="staff-form">
-            <h2>Add New Staff Member</h2>
-            <form id="addStaffForm">
+        <div class="player-form">
+            <h2 id="formTitle">Add/Update Player</h2>
+            <form id="playerForm">
+                <input type="hidden" id="playerIndex" value="">
                 <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" required>
+                    <label for="playerName">Full Name:</label>
+                    <input type="text" id="playerName" required>
                 </div>
                 <div class="form-group">
-                    <label for="role">Role:</label>
-                    <select id="role" required>
-                        <option value="Receptionist">Receptionist</option>
-                        <option value="Maintenance Crew">Maintenance Crew</option>
+                    <label for="playerPhone">Phone:</label>
+                    <input type="tel" id="playerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="playerEmail">Email:</label>
+                    <input type="email" id="playerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="playerStatus">Status:</label>
+                    <select id="playerStatus">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required>
-                </div>
-                <button type="submit" class="add-btn">Add Staff</button>
+                <button type="submit" class="save-btn" id="submitBtn">Save Player</button>
+                <button type="button" class="add-btn" style="background-color:#666;" onclick="resetForm()">Clear</button>
             </form>
         </div>
 
-        <h2>Current Staff List</h2>
-        <table id="staffTable">
+        <h2>Registered Players</h2>
+        <table id="playersTable">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Role</th>
+                    <th>Phone</th>
                     <th>Email</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Staff records will be added here via JS -->
+                <!-- Players will be added here via JS -->
             </tbody>
         </table>
     </div>
 
     <script src="js/Checkout.js"></script>
-    <script src="js/manage_staff.js"></script>
+    <script src="js/ADAM_manage_players.js"></script>
 </body>
 </html>

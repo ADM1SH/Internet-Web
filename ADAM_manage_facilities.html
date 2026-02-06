@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Manage Bookings - Probook Sports</title>
+    <title>Manage Facilities - Probook Sports</title>
     <link rel="stylesheet" href="css/Checkout.css">
     <style>
         body {
@@ -20,16 +20,15 @@
             padding: 20px;
         }
 
-        .booking-form {
+        .facility-form {
             background-color: #f9f9f9;
             padding: 15px;
             border: 1px solid #ccc;
             margin-bottom: 20px;
             width: 50%;
-            display: none; /* Hidden by default, shows when editing */
         }
 
-        .booking-form h2 {
+        .facility-form h2 {
             margin-top: 0;
             font-size: 1.2rem;
             color: #333;
@@ -81,7 +80,11 @@
             margin-right: 5px;
         }
 
-        .cancel-btn {
+        .edit-btn:hover {
+            background-color: #ec971f;
+        }
+
+        .delete-btn {
             background-color: #ff4d4d;
             color: white;
             border: none;
@@ -90,9 +93,9 @@
             border-radius: 3px;
         }
 
-        .status-confirmed { color: green; font-weight: bold; }
-        .status-cancelled { color: red; font-weight: bold; text-decoration: line-through; }
-        .status-pending { color: orange; font-weight: bold; }
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
 
         .save-btn {
             background-color: #0A6C74;
@@ -101,6 +104,10 @@
             padding: 8px 15px;
             cursor: pointer;
             font-weight: bold;
+        }
+
+        .save-btn:hover {
+            background-color: #08565c;
         }
     </style>
 </head>
@@ -113,62 +120,51 @@
     <hr>
 
     <div class="container">
-        <h1>Manage Bookings (Master Schedule)</h1>
+        <h1>Manage Facilities (Items/Services)</h1>
 
-        <div class="booking-form" id="editFormContainer">
-            <h2 id="formTitle">Edit Booking</h2>
-            <form id="bookingForm">
-                <input type="hidden" id="bookingIndex">
+        <div class="facility-form">
+            <h2 id="formTitle">Add/Update Facility</h2>
+            <form id="facilityForm">
+                <input type="hidden" id="facilityIndex" value="">
                 <div class="form-group">
-                    <label>Customer:</label>
-                    <span id="displayCustomer" style="font-style: italic;"></span>
+                    <label for="facName">Facility Name:</label>
+                    <input type="text" id="facName" placeholder="e.g. Badminton Court 1" required>
                 </div>
                 <div class="form-group">
-                    <label for="bookFacility">Facility:</label>
-                    <select id="bookFacility">
-                        <!-- Options populated via JS -->
+                    <label for="facType">Type:</label>
+                    <select id="facType">
+                        <option value="Badminton">Badminton</option>
+                        <option value="Tennis">Tennis</option>
+                        <option value="Futsal">Futsal</option>
+                        <option value="Basketball">Basketball</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="bookDate">Date:</label>
-                    <input type="date" id="bookDate" required>
+                    <label for="facPrice">Price per Hour (RM):</label>
+                    <input type="number" id="facPrice" step="0.50" placeholder="e.g. 20.00" required>
                 </div>
-                <div class="form-group">
-                    <label for="bookTime">Time:</label>
-                    <input type="time" id="bookTime" required>
-                </div>
-                <div class="form-group">
-                    <label for="bookStatus">Status:</label>
-                    <select id="bookStatus">
-                        <option value="Confirmed">Confirmed</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Cancelled">Cancelled</option>
-                    </select>
-                </div>
-                <button type="submit" class="save-btn">Update Booking</button>
-                <button type="button" class="cancel-btn" style="background-color:#666;" onclick="hideEditForm()">Close</button>
+                <button type="submit" class="save-btn" id="submitBtn">Save Facility</button>
+                <button type="button" class="add-btn" style="background-color:#666;" onclick="resetForm()">Clear</button>
             </form>
         </div>
 
-        <h2>All Court Bookings</h2>
-        <table id="bookingsTable">
+        <h2>Current Facilities & Pricing</h2>
+        <table id="facilitiesTable">
             <thead>
                 <tr>
-                    <th>Customer</th>
-                    <th>Facility</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
+                    <th>Facility Name</th>
+                    <th>Type</th>
+                    <th>Price (RM/Hour)</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Bookings via JS -->
+                <!-- Data via JS -->
             </tbody>
         </table>
     </div>
 
     <script src="js/Checkout.js"></script>
-    <script src="js/manage_bookings.js"></script>
+    <script src="js/ADAM_manage_facilities.js"></script>
 </body>
 </html>

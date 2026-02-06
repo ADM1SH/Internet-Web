@@ -7,14 +7,14 @@ window.onload = function() {
 
     document.getElementById("facilityForm").onsubmit = function(e) {
         e.preventDefault();
-        
+
         var name = document.getElementById("facName").value;
         var type = document.getElementById("facType").value;
         var price = document.getElementById("facPrice").value;
         var index = document.getElementById("facilityIndex").value;
 
         var facilityList = JSON.parse(localStorage.getItem("facilityList")) || [];
-        
+
         var facilityData = {
             name: name,
             type: type,
@@ -28,7 +28,7 @@ window.onload = function() {
         }
 
         localStorage.setItem("facilityList", JSON.stringify(facilityList));
-        
+
         resetForm();
         loadFacilities();
         alert("Facility information updated!");
@@ -37,8 +37,7 @@ window.onload = function() {
 
 function loadFacilities() {
     var facilityList = JSON.parse(localStorage.getItem("facilityList")) || [];
-    
-    // Default data if empty
+
     if (facilityList.length === 0) {
         facilityList = [
             { name: "Badminton Court 1", type: "Badminton", price: "20.00" },
@@ -53,13 +52,13 @@ function loadFacilities() {
     for (var i = 0; i < facilityList.length; i++) {
         var fac = facilityList[i];
         var row = tbody.insertRow();
-        
+
         row.insertCell(0).innerHTML = fac.name;
         row.insertCell(1).innerHTML = fac.type;
         row.insertCell(2).innerHTML = "RM " + fac.price;
-        
+
         var actionCell = row.insertCell(3);
-        
+
         var editBtn = document.createElement("button");
         editBtn.innerHTML = "Edit/Update Price";
         editBtn.className = "edit-btn";
@@ -68,7 +67,7 @@ function loadFacilities() {
                 editFacility(idx);
             };
         })(i);
-        
+
         var deleteBtn = document.createElement("button");
         deleteBtn.innerHTML = "Delete";
         deleteBtn.className = "delete-btn";
@@ -77,7 +76,7 @@ function loadFacilities() {
                 deleteFacility(idx);
             };
         })(i);
-        
+
         actionCell.appendChild(editBtn);
         actionCell.appendChild(deleteBtn);
     }
@@ -86,12 +85,12 @@ function loadFacilities() {
 function editFacility(index) {
     var facilityList = JSON.parse(localStorage.getItem("facilityList"));
     var fac = facilityList[index];
-    
+
     document.getElementById("facName").value = fac.name;
     document.getElementById("facType").value = fac.type;
     document.getElementById("facPrice").value = fac.price;
     document.getElementById("facilityIndex").value = index;
-    
+
     document.getElementById("formTitle").innerHTML = "Update Facility: " + fac.name;
     document.getElementById("submitBtn").innerHTML = "Update Facility";
 }
