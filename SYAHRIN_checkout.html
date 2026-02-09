@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Checkout - Probook Sports</title>
+        <link rel="stylesheet" href="css/SYAHRIN_style.css">
+    </head>
+    <body>
+        <header>    
+            <a href="index.html" class="anchorButton">
+                <img src="images/LogoTopLeft.png" alt="Logo" class="brandLogo">
+                <span id="brandName">Probook Sports</span>
+            </a>
+        </header>
+        <hr>
+
+        <a href="javascript:history.back()" class="anchorButton" id="prev">
+            <pre id="prevButton"><  Previous Page</pre>
+        </a>
+
+        <div class="checkout-container">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Payment Method</h2>
+                    <form id="paymentForm" action="PaymentSuccess.html">
+                        <div class="payment-grid">
+                            <label class="payOpt">
+                                <input type="radio" name="pay" id="radioCard" required> Credit/Debit Card
+                            </label>
+                            <label class="payOpt">
+                                <input type="radio" name="pay" id="radioBank" required> Online Banking
+                            </label>
+                            <label class="payOpt">
+                                <input type="radio" name="pay" id="radioQR" required> QR Pay
+                            </label>
+                        </div>
+
+                        <div id="cardDetails" class="payment-detail" style="display:none;">
+                            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                                <input type="text" id="cardNumber" placeholder="Card Number" style="flex:1;">
+                                <span id="cardType" style="font-weight:bold; color:#0A6C74; font-size:12px;"></span>
+                            </div>
+                            <div style="display:flex; gap:10px;">
+                                <input type="text" id="cardExpiry" placeholder="MM/YY" style="width:50%">
+                                <input type="text" id="cardCVV" placeholder="CVV" style="width:50%">
+                            </div>
+                        </div>
+
+                        <div id="qrDetails" class="payment-detail" style="display:none; text-align:center;">
+                            <img src="images/syahrin's QR HAHAHAHAHAAH.jpeg" style="width:150px; border-radius:10px;">
+                            <div style="margin-top:10px;">
+                                <p style="font-size:12px;">Upload Receipt Screenshot:</p>
+                                <input type="file" id="receiptUpload" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div id="bankDetails" class="payment-detail" style="display:none;">
+                            <select id="bankSelect" style="width:100%; padding:10px;">
+                                <option value="">-- Choose Your Bank --</option>
+                                <option value="https://www.maybank2u.com.my">Maybank2u</option>
+                                <option value="https://www.cimbclicks.com.my">CIMB Clicks</option>
+                                <option value="https://www.publicbank.com.my">Public Bank</option>
+                            </select>
+                        </div>
+                    </form> </div>
+
+                <div class="card">
+                    <h3>Cancellation Policy</h3>
+                    <p><i>2 days before the booking date.</i></p>
+                    <p><i>No refund will be given after 2 days left before the booking date.</i></p>
+                </div>
+            </div>
+
+            <div class="summary-sidebar">
+                <div class="card summary-card">
+                    <h3>Booking Summary</h3>
+                    <p><strong>Court:</strong> tally dgn part dani</p>
+                    <p><strong>Date:</strong> tally dgn part dani</p>
+                    <hr>
+                    <div class="total-line"><span>Total Amount:</span> <span>tally dgn part dani</span></div>
+                    <button type="submit" form="paymentForm" class="payButton">Confirm & Pay</button>
+                </div>
+            </div>
+        </div>
+        <script src="js/SYAHRIN_checkout.js"></script>
+    </body>
+</html>

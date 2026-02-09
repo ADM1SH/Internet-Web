@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback - Probook Sports</title>
+    <link rel="stylesheet" href="css/SYAHRIN_style.css"> <link rel="stylesheet" href="css/SYAHRIN_feedback.css">
+</head>
+<body>
+    <header>    
+        <a href="index.html" class="anchorButton">
+            <img src="images/LogoTopLeft.png" alt="Logo" class="brandLogo">
+            <span id="brandName">Probook Sports</span>
+        </a>
+    </header>
+    <hr>
+
+    <a href="javascript:history.back()" class="anchorButton" id="prev">
+        <pre id="prevButton"><  Previous Page</pre>
+    </a>
+
+    <div class="checkout-container">
+        <div class="main-content">
+            <div class="card">
+                <h2>Rate Your Experience</h2>
+                <p>We hope you enjoyed your game at Probook Sports!</p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                
+                <div class="star-section">
+                    <p style="font-weight: bold;">Rating:</p>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+
+                <div class="comment-section">
+                    <p style="font-weight: bold;">Your Feedback:</p>
+                    <textarea id="commentBox" placeholder="Tell us about the court quality or our service..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <aside class="summary-sidebar">
+            <div class="card summary-card">
+                <h3>Submit Review</h3>
+                <p style="font-size: 13px; color: #666;">Your feedback helps us improve our courts for your next game.</p>
+                <hr>
+                <button id="submitFeedback" class="payButton">Submit Feedback</button>
+                <p id="statusMsg" style="display:none; color:#0A6C74; font-weight:bold; margin-top:10px;"></p>
+            </div>
+        </aside>
+    </div>
+
+    <script src="js/SYAHRIN_feedback.js"></script>
+</body>
+</html>
