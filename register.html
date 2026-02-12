@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyberjaya Sports Center</title>
+    <link rel="stylesheet" href="muaz_style.css"> </head>
+<body>
+    <header>
+    <h1><b>Cyberjaya Sports Center</b></h1>
+    <a href="index.html">
+        <img src="logoa.png" alt="Cyberjaya Sports Center Logo" class="header-logo">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home Page</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="register.html">Sign Up Page</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+    
+    <main>
+    <h2>Create Your Account</h2>
+    <p><b>Join the Cyberjaya Sports Center community to start booking courts so that you can enjoy our facilities!!!</b></p>
+
+    <form action="#">
+        <table>
+            <tr>
+                <td><label for="fname">Full Name:</label></td>
+            <td><input type="text" id="fname" name="fullname" required></td>
+            </tr>
+            <tr>
+                 <td><label for="email">Email Address:</label></td>
+                <td><input type="text" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="id">Student/Staff ID:</label></td>
+                <td><input type="text" id="id" name="mmu_id" placeholder="e.g. 123456789"></td>
+            </tr>
+            <tr>
+                <td><label for="pass">Password:</label></td>
+                <td><input type="password" id="pass" name="password" required></td>
+            </tr>
+            <tr>
+             <td><label>Preferred Sport:</label></td>
+             <td>
+                 <select name="sport">
+                     <option value="badminton">Badminton</option>
+                     <option value="futsal">Futsal</option>
+                     <option value="tennis">Tennis</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="submit">Register Now</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</main>
