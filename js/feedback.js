@@ -41,7 +41,7 @@ window.onload = function()
        
         setTimeout(() => 
         {
-            window.location.href = "HOMEPAGE.html";
+            window.location.href = "index.html";
         }, 2000);
     };
 };

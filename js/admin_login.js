@@ -21,7 +21,7 @@ window.onload = function()
             
             setTimeout(() => 
             {
-                window.location.href = "SYAHRIN_adminDashboard.html";
+                window.location.href = "admin_dashboard.html";
             }, 1000);
         } 
         else 

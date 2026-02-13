@@ -64,7 +64,7 @@ window.onload = function()
             }
             
             window.open(bankUrl, '_blank');
-            window.location.href = "SYAHRIN_feedback.html";
+            window.location.href = "feedback.html";
         } 
         else if (document.getElementById('radioQR').checked) 
         {
@@ -74,11 +74,11 @@ window.onload = function()
                 alert("Please upload your receipt!"); return; 
             }
 
-            window.location.href = "SYAHRIN_feedback.html";
+            window.location.href = "feedback.html";
         } 
         else if (document.getElementById('radioCard').checked) 
         {
-            window.location.href = "SYAHRIN_feedback.html";
+            window.location.href = "feedback.html";
         }
     };
 };

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Checkout - Probook Sports</title>
-        <link rel="stylesheet" href="css/SYAHRIN_style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <header>    
@@ -22,7 +22,7 @@
             <div class="main-content">
                 <div class="card">
                     <h2>Payment Method</h2>
-                    <form id="paymentForm" action="PaymentSuccess.html">
+                    <form id="paymentForm" action="feedback.html">
                         <div class="payment-grid">
                             <label class="payOpt">
                                 <input type="radio" name="pay" id="radioCard" required> Credit/Debit Card
@@ -47,7 +47,7 @@
                         </div>
 
                         <div id="qrDetails" class="payment-detail" style="display:none; text-align:center;">
-                            <img src="images/syahrin's QR HAHAHAHAHAAH.jpeg" style="width:150px; border-radius:10px;">
+                            <img src="images/payment_qr.jpeg" style="width:150px; border-radius:10px;">
                             <div style="margin-top:10px;">
                                 <p style="font-size:12px;">Upload Receipt Screenshot:</p>
                                 <input type="file" id="receiptUpload" accept="image/*">
@@ -74,14 +74,14 @@
             <div class="summary-sidebar">
                 <div class="card summary-card">
                     <h3>Booking Summary</h3>
-                    <p><strong>Court:</strong> tally dgn part dani</p>
-                    <p><strong>Date:</strong> tally dgn part dani</p>
+                    <p><strong>Court:</strong> [To be selected]</p>
+                    <p><strong>Date:</strong> [To be selected]</p>
                     <hr>
-                    <div class="total-line"><span>Total Amount:</span> <span>tally dgn part dani</span></div>
+                    <div class="total-line"><span>Total Amount:</span> <span>[To be selected]</span></div>
                     <button type="submit" form="paymentForm" class="payButton">Confirm & Pay</button>
                 </div>
             </div>
         </div>
-        <script src="js/SYAHRIN_checkout.js"></script>
+        <script src="js/checkout.js"></script>
     </body>
 </html>
