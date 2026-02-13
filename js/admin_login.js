@@ -1,4 +1,3 @@
-// js/admin_login.js
 window.onload = function() {
     const loginForm = document.getElementById('loginForm');
     const errorMsg = document.getElementById('errorMsg');
