@@ -1,4 +1,3 @@
-// This script runs the admin dashboard. It handles the clock and calculates the real-time stats like revenue.
 window.onload = function()
 {
     const updateClock = () => {

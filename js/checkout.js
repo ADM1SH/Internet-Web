@@ -1,75 +1,67 @@
-// This script manages the payment page. It shows different payment options and saves the final booking data.
-window.onload = function() 
-{
-    const brandName = document.getElementById("brandName");
-    if (brandName) brandName.classList.add("active");
-
-    const form = document.getElementById('paymentForm');
-    const cardDetails = document.getElementById('cardDetails');
-    const qrDetails = document.getElementById('qrDetails');
-    const bankDetails = document.getElementById('bankDetails');
+window.onload = function() {
     
-    const cardNum = document.getElementById('cardNumber');
-    const cardExp = document.getElementById('cardExpiry');
-    const cardCvv = document.getElementById('cardCVV');
+    const tempBooking = JSON.parse(localStorage.getItem('tempBooking'));
+    if (!tempBooking) {
+        alert("No booking found! Redirecting to courts...");
+        window.location.href = "court_list.html";
+        return;
+    }
 
-    document.querySelectorAll('input[name="pay"]').forEach(radio => 
-    {
-        radio.addEventListener('change', function() 
-        {
-            cardDetails.style.display = (this.id === 'radioCard') ? 'block' : 'none';
-            bankDetails.style.display = (this.id === 'radioBank') ? 'block' : 'none';
-            qrDetails.style.display = (this.id === 'radioQR') ? 'block' : 'none';
+    
+    const summaryCard = document.querySelector('.summary-card');
+    if(summaryCard) {
+        const paragraphs = summaryCard.querySelectorAll('p');
+        paragraphs.forEach(p => {
+            if(p.innerHTML.includes("Court:")) p.innerHTML = `<strong>Court:</strong> ${tempBooking.facility}`;
+            if(p.innerHTML.includes("Date:")) p.innerHTML = `<strong>Date:</strong> ${tempBooking.date} (${tempBooking.time})`;
+        });
+        const totalSpan = summaryCard.querySelector('.total-line span:last-child');
+        if(totalSpan) totalSpan.innerText = "RM " + parseFloat(tempBooking.price).toFixed(2);
+    }
+
+    
+    const form = document.getElementById('paymentForm');
+    document.querySelectorAll('input[name="pay"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.getElementById('cardDetails').style.display = (this.id === 'radioCard') ? 'block' : 'none';
+            document.getElementById('bankDetails').style.display = (this.id === 'radioBank') ? 'block' : 'none';
+            document.getElementById('qrDetails').style.display = (this.id === 'radioQR') ? 'block' : 'none';
             
-            const isCard = this.id === 'radioCard';
-            cardNum.required = isCard;
-            cardExp.required = isCard;
-            cardCvv.required = isCard;
+            
+            const isCard = (this.id === 'radioCard');
+            document.getElementById('cardNumber').required = isCard;
+            document.getElementById('cardExpiry').required = isCard;
+            document.getElementById('cardCVV').required = isCard;
         });
     });
 
-    const cardDisplay = document.getElementById('cardType');
-    if (cardNum && cardDisplay) 
-    {
-        cardNum.addEventListener('input', function() 
-        {
-            const val = this.value;
-            if (val.startsWith('4')) cardDisplay.innerText = "VISA";
-            else if (val.startsWith('5')) cardDisplay.innerText = "MASTERCARD";
-            else cardDisplay.innerText = "";
-        });
-    }
+    
+    form.onsubmit = function(e) {
+        e.preventDefault();
 
-    if (form) {
-        form.onsubmit = function(e) 
-        {
-            e.preventDefault(); 
+        
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const customerName = currentUser ? currentUser.name : "Guest User";
 
-            if (document.getElementById('radioBank').checked) 
-            {
-                const bankUrl = document.getElementById('bankSelect').value;
-                if (!bankUrl) 
-                { 
-                    alert("Please select a bank!"); 
-                    return; 
-                }
-                window.open(bankUrl, '_blank');
-                window.location.href = "feedback.html";
-            } 
-            else if (document.getElementById('radioQR').checked) 
-            {
-                const receipt = document.getElementById('receiptUpload');
-                if (!receipt.files || !receipt.files.length) 
-                { 
-                    alert("Please upload your receipt!"); 
-                    return; 
-                }
-                window.location.href = "feedback.html";
-            } 
-            else if (document.getElementById('radioCard').checked) 
-            {
-                window.location.href = "feedback.html";
-            }
+        
+        const finalBooking = {
+            id: Date.now(), 
+            customer: customerName,
+            facility: tempBooking.facility,
+            date: tempBooking.date,
+            time: tempBooking.time,
+            price: tempBooking.price,
+            status: "Confirmed", 
+            paymentMethod: document.querySelector('input[name="pay"]:checked').nextSibling.textContent.trim()
         };
-    }
+
+       ASE
+        const bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
+        bookingList.push(finalBooking);
+        localStorage.setItem("bookingList", JSON.stringify(bookingList));
+
+        
+        localStorage.removeItem("tempBooking"); 
+        window.location.href = "feedback.html";
+    };
 };

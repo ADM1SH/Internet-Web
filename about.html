@@ -1,4 +1,3 @@
-<!-- This page tells the story of the sports center and shows virtual tours of the courts. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,9 @@
 <body>
    <header>
        <div style="display:flex; align-items:center; gap:15px;">
-           <a href="index.html"><img src="images/LogoTopLeft.png" alt="Cyberjaya Sports Center Logo" class="header-logo"></a>
+           <a href="index.html" id="brandName">
+               <img src="images/LogoTopLeft.png" alt="Cyberjaya Sports Center Logo" class="header-logo">
+           </a>
            <h1 style="margin:0; border:none;">Cyberjaya Sports Center</h1>
        </div>
        <nav>
@@ -21,27 +22,28 @@
             <li><a href="about.html">About Us</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="register.html">Sign Up</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li><a href="join_us.html">Join Us</a></li>
             <li><a href="admin_login.html">Staff Portal</a></li>
         </ul>
     </nav>
 </header>
-<script src="js/common.js"></script>
 
-    <main><div class="card">
+<main>
+    <div class="card">
         <h2>Our History & Owners</h2>
         <p><b>Before it became a premier hub for sports enthusiasts, the site was a quiet residential area. The center was built with the vision of bringing the community together through sports and recreation.</b></p>
         <p><b>Owned and operated by a dedicated team of sports lovers, our mission is to provide top-notch facilities and services to promote a healthy lifestyle in Cyberjaya for the students who need to blow off steam after long study sessions.</b></p>
         
-      <h3>Why Choose Us?</h3>
-<p>We are not just a sports hall, We are a community hub designed for the serious athletes.</p>
-<ol>
-    <li><strong><b>Digital-First Booking:</b></strong> No more phone calls. Book and pay for your court in under 60 seconds through our system.</li>
-    <li><strong><b>Student Special:</b></strong> We offer the best rates in Cyberjaya specifically for MMU students with valid IDs.</li>
-    <li><strong><b>Professional Grade Surfaces:</b></strong> Our courts use Olympic-standard flooring to prevent injuries and improve game quality.</li>
-    <li><strong><b>Strategic Location:</b></strong> Located right in the heart of the tech city, making us the perfect spot for after-class matches.</li>
-</ol>
+        <h3>Why Choose Us?</h3>
+        <p>We are not just a sports hall, we are a community hub designed for serious athletes.</p>
+        <ol>
+            <li><strong>Digital-First Booking:</strong> No more phone calls. Book and pay for your court in under 60 seconds through our system.</li>
+            <li><strong>Student Special:</strong> We offer the best rates in Cyberjaya specifically for MMU students with valid IDs.</li>
+            <li><strong>Professional Grade Surfaces:</strong> Our courts use Olympic-standard flooring to prevent injuries and improve game quality.</li>
+            <li><strong>Strategic Location:</strong> Located right in the heart of the tech city, making us the perfect spot for after-class matches.</li>
+        </ol>
+
+        <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
 
         <h3>Virtual Tour</h3>
         <p>Watch these videos to see our high-quality futsal and badminton courts.</p>
@@ -71,6 +73,9 @@
                 </iframe>
             </div>
         </div>
-    </div></main>
+    </div>
+</main>
+
+<script src="js/common.js"></script>
 </body>
 </html>

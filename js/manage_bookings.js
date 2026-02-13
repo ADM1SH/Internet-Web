@@ -1,4 +1,3 @@
-// This script allows admins to see, edit, or cancel customer court bookings.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");

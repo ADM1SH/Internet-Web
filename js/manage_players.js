@@ -1,4 +1,3 @@
-// This script manages the player records, allowing admins to add or edit member information.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");

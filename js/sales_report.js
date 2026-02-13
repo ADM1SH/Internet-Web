@@ -1,4 +1,3 @@
-// This script generates the sales reports, showing monthly revenue and total booking counts.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");

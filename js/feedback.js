@@ -1,4 +1,3 @@
-// This script handles the star ratings and the feedback form after a booking is completed.
 window.onload = function() 
 {
     const brandName = document.getElementById("brandName");

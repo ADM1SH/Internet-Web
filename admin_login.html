@@ -1,18 +1,20 @@
-<!-- This is the staff portal login page for admins and receptionists. -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Portal | Cyberjaya Sports Center</title>
+    <title>Staff Portal - Probook Sports</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <script src="js/common.js"></script>
+
     <div class="login-container">
         <div class="login-card">
             <div class="login-visual">
-                <div style="background:white; padding:10px; border-radius:10px; margin-bottom:20px;"><img src="images/LogoTopLeft.png" alt="Logo" style="height: 50px; display:block;"></div>
+                <div style="background:white; padding:10px; border-radius:10px; margin-bottom:20px;">
+                    <img src="images/LogoTopLeft.png" alt="Logo" style="height: 50px; display:block;">
+                </div>
                 <h2>Staff Portal</h2>
                 <p>Manage bookings, facilities, and system operations with ease.</p>
                 <div style="margin-top: 40px;">
@@ -24,16 +26,16 @@
                 <h3>Welcome Back</h3>
                 <form id="loginForm">
                     <div class="input-group">
-                        <label>Staff Username</label>
+                        <label for="username">Staff Username</label>
                         <input type="text" id="username" placeholder="e.g. admin" required>
                     </div>
                     <div class="input-group">
-                        <label>Password</label>
+                        <label for="password">Password</label>
                         <input type="password" id="password" placeholder="••••••••" required>
                     </div>
-
+                    
                     <button type="submit" class="btn-login staff-btn">Login to Dashboard</button>
-
+                    
                     <p id="errorMsg" style="color: #e74c3c; text-align: center; margin-top: 20px; display: none; font-weight: bold;">
                         Invalid credentials!
                     </p>
@@ -41,6 +43,8 @@
             </div>
         </div>
     </div>
+
+    
 
     <script src="js/admin_login.js"></script>
 </body>
