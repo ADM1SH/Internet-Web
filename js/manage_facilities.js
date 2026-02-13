@@ -1,3 +1,4 @@
+// This script is for managing the sports courts, like updating names, types, and hourly prices.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");

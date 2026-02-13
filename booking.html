@@ -1,0 +1,114 @@
+<!-- This is the date and time selection page that also checks if a slot is free. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Slot | Cyberjaya Sports Center</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div style="display:flex; align-items:center; gap:15px;">
+            <a href="index.html"><img src="images/LogoTopLeft.png" alt="Cyberjaya Sports Center Logo" class="header-logo"></a>
+            <h1 style="margin:0; border:none;">Cyberjaya Sports Center</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="court_list.html" class="nav-link">Our Courts</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                <li><a href="register.html" class="nav-link">Sign Up</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li><a href="admin_login.html" class="nav-link">Staff Portal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Select Your Slot</h2>
+            <p>Please choose your preferred date and time for <strong id="selectedFacilityName">Selected Facility</strong>.</p>
+
+            <div class="card" style="max-width: 500px; margin: 30px auto; text-align: left;">
+                <form id="slotForm">
+                    <div class="input-group">
+                        <label for="bookingDate">Date:</label>
+                        <input type="date" id="bookingDate" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="bookingTime">Preferred Time:</label>
+                        <select id="bookingTime" required>
+                            <option value="">-- Select Time Slot --</option>
+                            <option value="08:00 AM">08:00 AM - 09:00 AM</option>
+                            <option value="09:00 AM">09:00 AM - 10:00 AM</option>
+                            <option value="05:00 PM">05:00 PM - 06:00 PM</option>
+                            <option value="08:00 PM">08:00 PM - 09:00 PM</option>
+                            <option value="10:00 PM">10:00 PM - 11:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div id="bookingSummary" style="margin-top: 20px; padding: 15px; background: #e0f2f1; border-radius: 8px;">
+                        <p style="margin: 0;"><strong>Estimated Total:</strong> <span id="estimatedPrice">RM 0.00</span></p>
+                    </div>
+
+                    <button type="submit" class="btn-login" style="width: 100%; margin-top: 20px;">Confirm & Proceed</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script>
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('bookingDate');
+            if (dateInput) dateInput.setAttribute('min', today);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const facility = urlParams.get('facility') || "Badminton";
+            const facDisplay = document.getElementById('selectedFacilityName');
+            if (facDisplay) facDisplay.innerText = facility;
+
+            let price = (facility === "Futsal") ? 80 : 20;
+            const priceDisplay = document.getElementById('estimatedPrice');
+            if (priceDisplay) priceDisplay.innerText = "RM " + parseFloat(price).toFixed(2);
+
+            const slotForm = document.getElementById('slotForm');
+            if (slotForm) {
+                slotForm.onsubmit = function(e) {
+                    e.preventDefault();
+                    
+                    const selectedDate = document.getElementById('bookingDate').value;
+                    const selectedTime = document.getElementById('bookingTime').value;
+
+                    const bookingList = JSON.parse(localStorage.getItem('bookingList')) || [];
+                    const isAlreadyBooked = bookingList.some(b => 
+                        b.facility === facility && 
+                        b.date === selectedDate && 
+                        b.time === selectedTime &&
+                        b.status !== "Cancelled"
+                    );
+
+                    if (isAlreadyBooked) {
+                        alert(`SORRY! ${facility} is already booked for ${selectedDate} at ${selectedTime}. Please choose another slot.`);
+                        return;
+                    }
+
+                    const bookingData = {
+                        facility: facility,
+                        date: selectedDate,
+                        time: selectedTime,
+                        price: price
+                    };
+                    localStorage.setItem('tempBooking', JSON.stringify(bookingData));
+                    window.location.href = "checkout.html";
+                };
+            }
+        };
+    </script>
+</body>
+</html>
