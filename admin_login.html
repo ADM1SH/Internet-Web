@@ -2,85 +2,41 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Staff Login - Probook Sports</title>
+    <title>Staff Portal - Probook Sports</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        .login-box
-        {
-            max-width: 400px;
-            margin: 80px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .login-header 
-        {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .input-group 
-        {
-            margin-bottom: 20px;
-        }
-
-        .input-group label 
-        {
-            display: block;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .input-group input 
-        {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .input-group input:focus 
-        {
-            border-color: #0A6C74;
-            outline: none;
-        }
-
-    </style>
 </head>
 <body>
-    <header>    
-        <a href="index.html" class="anchorButton">
-            <img src="images/LogoTopLeft.png" alt="Logo" class="brandLogo">
-            <span id="brandName">Probook Sports</span>
-        </a>
-    </header>
-    <hr>
-
-    <div class="login-box card">
-        <div class="login-header">
-            <h2 style="color: #0A6C74;">Staff Portal</h2>
-            <p>Enter your credentials to manage bookings</p>
-        </div>
-
-        <form id="loginForm">
-            <div class="input-group">
-                <label>Staff Username</label>
-                <input type="text" id="username" placeholder="e.g. admin_user - admin" required>
-            </div>
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="•••••••• - iwp123" required>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-visual">
+                <div style="background:white; padding:10px; border-radius:10px; margin-bottom:20px;"><img src="images/LogoTopLeft.png" alt="Logo" style="height: 50px; display:block;"></div>
+                <h2>Staff Portal</h2>
+                <p>Manage bookings, facilities, and system operations with ease.</p>
+                <div style="margin-top: 40px;">
+                    <a href="index.html" style="color: white; text-decoration: none; font-size: 0.9rem;">← Back to Public Website</a>
+                </div>
             </div>
             
-            <button type="submit" class="payButton">Login to Dashboard</button>
-            <p id="errorMsg" style="color: red; text-align: center; margin-top: 15px; display: none; font-size: 14px;">
-                Invalid username or password!
-            </p>
-        </form>
+            <div class="login-form-side">
+                <h3>Welcome Back</h3>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Staff Username</label>
+                        <input type="text" id="username" placeholder="e.g. admin" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-login staff-btn">Login to Dashboard</button>
+                    
+                    <p id="errorMsg" style="color: #e74c3c; text-align: center; margin-top: 20px; display: none; font-weight: bold;">
+                        Invalid credentials!
+                    </p>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="js/admin_login.js"></script>

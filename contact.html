@@ -2,78 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cyberjaya Sports Center</title>
-    <link rel="stylesheet" href="css/style.css"> </head>
+    <title>Contact Us - Cyberjaya Sports Center</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
     <header>
-    <h1><b>Cyberjaya Sports Center</b></h1>
-    <a href="index.html">
-        <img src="images/LogoTopLeft.png" alt="Cyberjaya Sports Center Logo" class="header-logo">
-    </a>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home Page</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="register.html">Sign Up Page</a></li>
-            <li><a href="login.html">Login</a></li><li><a href="admin_login.html">Staff Portal</a></li>
-        </ul>
-    </nav>
-</header>
+        <div style="display:flex; align-items:center; gap:15px;">
+            <a href="index.html"><img src="images/LogoTopLeft.png" alt="Logo" class="header-logo"></a>
+            <h1 style="margin:0; border:none;">Cyberjaya Sports Center</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="register.html">Sign Up Page</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="admin_login.html">Staff Portal</a></li>
+            </ul>
+        </nav>
+    </header>
     
     <main>
-    <h2>Contact Us</h2>
-    <p>Have questions? Reach out to the Cyberjaya Sports Center team so that we can assist you promptly and efficiently!!!</p>
-    
-    <h3>Our Location & Owners</h3>
-    <p>Owned and operated by the Cyberjaya Sports Group. Visit us at our main hub!</p>
-    
-    <table>
-        <tr>
-            <td>Address:</td>
-            <td> Mutiara Ville, Cyberjaya, Malaysia</td>
-        </tr>
-        <tr>
-            <td>Phone:</td>
-            <td>+60 12-677 6767</td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td>67CyberSport@gmail.com</td>
-        </tr>
-    </table> <h3>Our Location</h3>
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.6246567577687!2d101.63152697584427!3d2.9237827544948725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdb6dc8a70d5a7%3A0x9001ab39468194d2!2sCyberjaya%2C%2063000%20Cyberjaya%2C%20Selangor!5e0!3m2!1sen!2smy!4v1770901573905!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            width="100%" height="300" style="border:2px solid black; border-radius:10px;" allowfullscreen>
-        </iframe>
-<br><br>
+        <div class="card">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out to the Cyberjaya Sports Center team so that we can assist you promptly and efficiently!</p>
+            
+            <div style="display: flex; gap: 40px; text-align: left; margin-top: 40px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Our Details</h3>
+                    <table style="box-shadow: none; margin-top: 0;">
+                        <tr>
+                            <td style="font-weight: bold; width: 100px;">Address:</td>
+                            <td>Mutiara Ville, Cyberjaya, Malaysia</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">Phone:</td>
+                            <td>+60 12-677 6767</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">Email:</td>
+                            <td>67CyberSport@gmail.com</td>
+                        </tr>
+                    </table>
 
-    <h3>To Send us a Message:</h3>
-    <form action="#">
-        <label>Your Name:</label>
-        <br>
-        <input type="text" name="name" required>
-        <br>
-        <br>
+                    <h3 style="margin-top: 30px;">Find Us on Map</h3>
+                    <div style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.6246567577687!2d101.63152697584427!3d2.9237827544948725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdb6dc8a70d5a7%3A0x9001ab39468194d2!2sCyberjaya%2C%2063000%20Cyberjaya%2C%20Selangor!5e0!3m2!1sen!2smy!4v1770901573905!5m2!1sen!2smy" 
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
 
-        <label>Email Address:</label>
-        <br>
-        <input type="text" name="email" required>
-        <br>
-        <br>
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Send us a Message</h3>
+                    <form action="#" style="padding: 0; box-shadow: none;">
+                        <div class="input-group">
+                            <label>Your Name</label>
+                            <input type="text" name="name" placeholder="Full Name" required>
+                        </div>
 
-        <label>Inquiry Type:</label><br>
-        <select name="subject">
-            <option value="booking">Court Booking</option>
-            <option value="promo">Promotions</option>
-            <option value="other">Other</option>
-        </select>
-        <br>
-        <br>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
 
-        <label>Message:</label><br>
-        <textarea name="message" rows="4"></textarea><br><br>
+                        <div class="input-group">
+                            <label>Inquiry Type</label>
+                            <select name="subject">
+                                <option value="booking">Court Booking</option>
+                                <option value="promo">Promotions</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
 
-        <button type="submit">Submit Inquiry</button>
-    </form>
-</main>
+                        <div class="input-group">
+                            <label>Message</label>
+                            <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                        </div>
+
+                        <button type="submit" style="width: 100%;">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
