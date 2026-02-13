@@ -7,35 +7,37 @@
 ## 📋 Project Objective
 To design and build a complete client-side website for a local sports facility. This system allows users to view courts (Futsal, Badminton, Tennis), register as members, and book slots, while administrators can manage staff, facilities, and bookings.
 
-## 👥 System Modules
+## 👥 Project Team & Responsibilities
 
-### 1. Public Access
-**Focus:** Welcoming users and registration.
-- **index.html**: Welcome banner, promos, and main navigation.
-- **about.html**: Facility information and rules.
-- **contact.html**: Location and inquiry form.
-- **login.html**: User login page.
-- **register.html**: User registration page.
+### 1. Adam bin Anwar
+**Focus:** Facility Management & Logic
+- Staff Management (view, add, delete, edit, cancel)
+- Players Management (view, add, delete, edit, cancel)
+- Facilities Management (view, add, delete, edit, cancel)
+- Booking Management (view, add, delete, edit, cancel)
+- Sales Report Page
 
-### 2. Booking & Feedback
-**Focus:** Customer transaction and feedback.
-- **checkout.html**: Payment and booking summary.
-- **feedback.html**: Customer feedback and rating system.
+### 2. Muaz Muhammad bin Mohd Ramzul Afzan
+**Focus:** Public Website & Entry Points
+- Homepage (`index.html`)
+- About Us page
+- Contact Us page
+- Member Registration page
+- User Login page
 
-### 3. Admin Portal
-**Focus:** Staff authentication and dashboard.
-- **admin_login.html**: Secure login for staff and managers.
-- **admin_dashboard.html**: Main overview with statistics and navigation.
+### 3. Muhammad Danish Aqil bin Mohamad Ikhwan
+**Focus:** User Experience & Facilities
+- User Dashboard
+- Court List
+- Court Details
+- Booking Slot Selection
 
-### 4. Management Tools
-**Focus:** Managing system data and bookings.
-- **manage_staff.html**: Interface to manage staff members.
-- **manage_players.html**: Interface to manage player details.
-- **manage_facilities.html**: Tools to update facility types and pricing.
-- **manage_bookings.html**: Master schedule for all court rentals.
-- **sales_report.html**: Revenue reporting and summaries.
-
----
+### 4. Noorsyahrin Syafwan bin Syazali
+**Focus:** Transactions & Admin Entry
+- Checkout & Payment
+- Feedback & Ratings
+- Admin Login
+- Admin Dashboard
 
 ## 📂 Project Structure
 

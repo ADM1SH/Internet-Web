@@ -6,45 +6,43 @@ window.onload = function() {
     loadFacilitiesDropdown();
     loadBookings();
 
-    document.getElementById("bookingForm").onsubmit = function(e) {
-        e.preventDefault();
+    const bookingForm = document.getElementById("bookingForm");
+    if (bookingForm) {
+        bookingForm.onsubmit = function(e) {
+            e.preventDefault();
 
-        var facility = document.getElementById("bookFacility").value;
-        var date = document.getElementById("bookDate").value;
-        var time = document.getElementById("bookTime").value;
-        var status = document.getElementById("bookStatus").value;
-        var index = document.getElementById("bookingIndex").value;
+            const facility = document.getElementById("bookFacility").value;
+            const date = document.getElementById("bookDate").value;
+            const time = document.getElementById("bookTime").value;
+            const status = document.getElementById("bookStatus").value;
+            const index = document.getElementById("bookingIndex").value;
 
-        var bookingList = JSON.parse(localStorage.getItem("bookingList"));
+            const bookingList = JSON.parse(localStorage.getItem("bookingList"));
 
-        bookingList[index].facility = facility;
-        bookingList[index].date = date;
-        bookingList[index].time = time;
-        bookingList[index].status = status;
+            bookingList[index].facility = facility;
+            bookingList[index].date = date;
+            bookingList[index].time = time;
+            bookingList[index].status = status;
 
-        localStorage.setItem("bookingList", JSON.stringify(bookingList));
+            localStorage.setItem("bookingList", JSON.stringify(bookingList));
 
-        hideEditForm();
-        loadBookings();
-        alert("Booking updated successfully!");
-    };
+            hideEditForm();
+            loadBookings();
+            alert("Booking updated successfully!");
+        };
+    }
 };
 
 function loadFacilitiesDropdown() {
-    var facilities = JSON.parse(localStorage.getItem("facilityList")) || [];
-    var select = document.getElementById("bookFacility");
-    select.innerHTML = "";
-
-    for (var i = 0; i < facilities.length; i++) {
-        var opt = document.createElement("option");
-        opt.value = facilities[i].name;
-        opt.innerHTML = facilities[i].name;
-        select.appendChild(opt);
+    const facilities = JSON.parse(localStorage.getItem("facilityList")) || [];
+    const select = document.getElementById("bookFacility");
+    if (select) {
+        select.innerHTML = facilities.map(f => `<option value="${f.name}">${f.name}</option>`).join("");
     }
 }
 
 function loadBookings() {
-    var bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
+    let bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
 
     if (bookingList.length === 0) {
         bookingList = [
@@ -54,50 +52,25 @@ function loadBookings() {
         localStorage.setItem("bookingList", JSON.stringify(bookingList));
     }
 
-    var tbody = document.querySelector("#bookingsTable tbody");
-    tbody.innerHTML = "";
-
-    for (var i = 0; i < bookingList.length; i++) {
-        var book = bookingList[i];
-        var row = tbody.insertRow();
-
-        row.insertCell(0).innerHTML = book.customer;
-        row.insertCell(1).innerHTML = book.facility;
-        row.insertCell(2).innerHTML = book.date;
-        row.insertCell(3).innerHTML = book.time;
-
-        var statusCell = row.insertCell(4);
-        statusCell.innerHTML = book.status;
-        statusCell.className = "status-" + book.status.toLowerCase();
-
-        var actionCell = row.insertCell(5);
-
-        var editBtn = document.createElement("button");
-        editBtn.innerHTML = "Edit";
-        editBtn.className = "edit-btn";
-        editBtn.onclick = (function(idx) {
-            return function() {
-                showEditForm(idx);
-            };
-        })(i);
-
-        var cancelBtn = document.createElement("button");
-        cancelBtn.innerHTML = "Cancel";
-        cancelBtn.className = "cancel-btn";
-        cancelBtn.onclick = (function(idx) {
-            return function() {
-                cancelBooking(idx);
-            };
-        })(i);
-
-        actionCell.appendChild(editBtn);
-        actionCell.appendChild(cancelBtn);
-    }
+    const tbody = document.querySelector("#bookingsTable tbody");
+    tbody.innerHTML = bookingList.map((book, i) => `
+        <tr>
+            <td>${book.customer}</td>
+            <td>${book.facility}</td>
+            <td>${book.date}</td>
+            <td>${book.time}</td>
+            <td class="status-${book.status.toLowerCase()}">${book.status}</td>
+            <td>
+                <button class="edit-btn" onclick="showEditForm(${i})">Edit</button>
+                <button class="cancel-btn" onclick="cancelBooking(${i})">Cancel</button>
+            </td>
+        </tr>
+    `).join("");
 }
 
 function showEditForm(index) {
-    var bookingList = JSON.parse(localStorage.getItem("bookingList"));
-    var book = bookingList[index];
+    const bookingList = JSON.parse(localStorage.getItem("bookingList"));
+    const book = bookingList[index];
 
     document.getElementById("displayCustomer").innerHTML = book.customer;
     document.getElementById("bookFacility").value = book.facility;
@@ -111,12 +84,13 @@ function showEditForm(index) {
 }
 
 function hideEditForm() {
-    document.getElementById("editFormContainer").style.display = "none";
+    const container = document.getElementById("editFormContainer");
+    if (container) container.style.display = "none";
 }
 
 function cancelBooking(index) {
     if (confirm("Are you sure you want to cancel this booking?")) {
-        var bookingList = JSON.parse(localStorage.getItem("bookingList"));
+        const bookingList = JSON.parse(localStorage.getItem("bookingList"));
         bookingList[index].status = "Cancelled";
         localStorage.setItem("bookingList", JSON.stringify(bookingList));
         loadBookings();

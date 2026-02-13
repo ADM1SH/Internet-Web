@@ -1,8 +1,8 @@
 window.onload = function()
 {
     const loginForm = document.querySelector('form');
+    if (!loginForm) return;
 
-    // Add error message element dynamically if it doesn't exist
     let errorMsg = document.getElementById('errorMsg');
     if (!errorMsg) {
         errorMsg = document.createElement('p');
@@ -22,10 +22,8 @@ window.onload = function()
         const pass = document.getElementById('pass').value;
         const submitBtn = loginForm.querySelector('button');
 
-        // Simple logic for prototype: Any non-empty input works
-        if (user.length > 3 && pass.length > 3) 
+        if (user.length >= 4 && pass.length >= 4) 
         {
-            // Success Feedback
             errorMsg.style.display = "none";
             submitBtn.innerText = "Login Successful!";
             submitBtn.style.backgroundColor = "#2ecc71";
@@ -38,14 +36,16 @@ window.onload = function()
         }
         else
         {
-            // Failure Feedback
             errorMsg.style.display = "block";
             errorMsg.innerText = "Please enter a valid ID and Password (min 4 chars).";
             errorMsg.style.color = "#e74c3c";
 
-            const card = document.querySelector('.card');
-            card.style.animation = "shake 0.4s ease-in-out";
-            setTimeout(() => card.style.animation = "", 400);
+            const card = document.querySelector('.login-card') || document.querySelector('.card');
+            if (card) {
+                card.style.animation = 'none';
+                card.offsetHeight;
+                card.style.animation = "shake 0.4s ease-in-out";
+            }
         }
     };
 };

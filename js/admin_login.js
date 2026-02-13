@@ -13,7 +13,6 @@ window.onload = function()
 
         if (user === "admin" && pass === "iwp123") 
         {
-            // Success Feedback
             error.style.display = "none";
             submitBtn.innerText = "Login Successful! Redirecting...";
             submitBtn.style.backgroundColor = "#2ecc71";
@@ -26,15 +25,13 @@ window.onload = function()
         } 
         else 
         {
-            // Failure Feedback
             error.style.display = "block";
             error.innerText = "Invalid credentials. Please try again.";
             error.style.color = "#e74c3c";
             
-            // Visual shake effect
             const card = document.querySelector('.card');
             card.style.animation = 'none';
-            card.offsetHeight; // trigger reflow
+            card.offsetHeight;
             card.style.animation = "shake 0.4s ease-in-out";
             
             document.getElementById('password').value = "";

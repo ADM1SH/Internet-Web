@@ -1,23 +1,19 @@
 window.onload = function() 
 {
-    function updateClock() 
-    {
+    const updateClock = () => {
         const now = new Date();
-        document.getElementById('currentTime').innerText = now.toLocaleString();
-    }
+        const clockEl = document.getElementById('currentTime');
+        if (clockEl) clockEl.innerText = now.toLocaleString();
+    };
 
     setInterval(updateClock, 1000);
     updateClock();
 
-    const links = document.querySelectorAll('.nav-link');
-    links.forEach(link => 
-    {
-        link.onclick = function(e) 
-        {
-            if(this.innerText !== "Logout") 
-            {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.onclick = function() {
+            if (this.innerText !== "Logout") {
                 console.log("Navigating to: " + this.innerText);
             }
-        }
+        };
     });
 };
