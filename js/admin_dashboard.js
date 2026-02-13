@@ -1,4 +1,5 @@
-window.onload = function() 
+// This script runs the admin dashboard. It handles the clock and calculates the real-time stats like revenue.
+window.onload = function()
 {
     const updateClock = () => {
         const now = new Date();
@@ -8,6 +9,21 @@ window.onload = function()
 
     setInterval(updateClock, 1000);
     updateClock();
+
+    const bookings = JSON.parse(localStorage.getItem('bookingList')) || [];
+    const facilities = JSON.parse(localStorage.getItem('facilityList')) || [];
+
+    const prices = {};
+    facilities.forEach(f => prices[f.name] = parseFloat(f.price));
+
+    const activeBookings = bookings.filter(b => b.status === "Confirmed");
+    const totalRevenue = activeBookings.reduce((sum, b) => sum + (prices[b.facility] || 0), 0);
+
+    const statCards = document.querySelectorAll('.stat-number');
+    if (statCards.length >= 2) {
+        statCards[0].innerText = activeBookings.length;
+        statCards[1].innerText = "RM " + totalRevenue.toFixed(2);
+    }
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.onclick = function() {

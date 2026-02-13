@@ -1,3 +1,4 @@
+// This handles the staff login page. It checks the username and password and sends admins to the dashboard.
 window.onload = function() 
 {
     const loginForm = document.getElementById('loginForm');

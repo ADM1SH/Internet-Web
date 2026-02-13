@@ -1,3 +1,4 @@
+// This handles the player login page. It makes sure the user enters their ID and password correctly.
 window.onload = function()
 {
     const loginForm = document.querySelector('form');

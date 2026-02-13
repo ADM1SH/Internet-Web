@@ -1,3 +1,4 @@
+<!-- This page shows the revenue reports and allows admins to print them. -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,13 @@
         </div>
 
         <div class="main-content-area">
-            <h1>Sales Report & Revenue Overview</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1>Sales Report & Revenue Overview</h1>
+                <div style="display:flex; gap:10px;" class="no-print">
+                    <button onclick="downloadCSV()" class="add-btn" style="background-color: #27ae60 !important;">Excel</button>
+                    <button onclick="window.print()" class="add-btn" style="background-color: #34495e !important;">PDF</button>
+                </div>
+            </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
@@ -39,13 +46,30 @@
             </div>
 
             <div class="card">
-                <h2>Revenue Breakdown</h2>
-                <table id="salesTable">
+                <h2>Performance by Facility</h2>
+                <table id="facilityTable">
                     <thead>
                         <tr>
-                            <th>Month</th>
+                            <th>Facility Name</th>
                             <th>Total Bookings</th>
-                            <th>Total Revenue (RM)</th>
+                            <th>Revenue Generated (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>Detailed Transaction Log (Confirmed)</h2>
+                <table id="transactionTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Facility</th>
+                            <th>Amount (RM)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +80,6 @@
         </div>
     </div>
 
-    <script src="js/checkout.js"></script>
     <script src="js/sales_report.js"></script>
 </body>
 </html>

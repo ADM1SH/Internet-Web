@@ -1,3 +1,4 @@
+// This script manages the payment page. It shows different payment options and saves the final booking data.
 window.onload = function() 
 {
     const brandName = document.getElementById("brandName");

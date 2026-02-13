@@ -1,3 +1,4 @@
+// This script is used to manage staff members and their roles in the system.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");

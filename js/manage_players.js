@@ -1,9 +1,17 @@
+// This script manages the player records, allowing admins to add or edit member information.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");
     }
 
     loadPlayers();
+
+    const playerSearch = document.getElementById("playerSearch");
+    if (playerSearch) {
+        playerSearch.oninput = function() {
+            loadPlayers(this.value.toLowerCase());
+        };
+    }
 
     document.getElementById("playerForm").onsubmit = function(e) {
         e.preventDefault();
@@ -16,12 +24,7 @@ window.onload = function() {
 
         const playerList = JSON.parse(localStorage.getItem("playerList")) || [];
 
-        const playerData = {
-            name: name,
-            phone: phone,
-            email: email,
-            status: status
-        };
+        const playerData = { name, phone, email, status };
 
         if (index === "") {
             playerList.push(playerData);
@@ -37,7 +40,7 @@ window.onload = function() {
     };
 };
 
-function loadPlayers() {
+function loadPlayers(filter = "") {
     let playerList = JSON.parse(localStorage.getItem("playerList")) || [];
 
     if (playerList.length === 0) {
@@ -46,6 +49,13 @@ function loadPlayers() {
             { name: "Jane Smith", phone: "019-8765432", email: "jane@test.com", status: "Inactive" }
         ];
         localStorage.setItem("playerList", JSON.stringify(playerList));
+    }
+
+    if (filter) {
+        playerList = playerList.filter(p => 
+            p.name.toLowerCase().includes(filter) || 
+            p.email.toLowerCase().includes(filter)
+        );
     }
 
     const tbody = document.querySelector("#playersTable tbody");
