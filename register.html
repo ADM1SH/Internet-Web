@@ -2,62 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cyberjaya Sports Center</title>
-    <link rel="stylesheet" href="muaz_style.css"> </head>
+    <title>Register - Cyberjaya Sports Center</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-    <header>
-    <h1><b>Cyberjaya Sports Center</b></h1>
-    <a href="index.html">
-        <img src="logoa.png" alt="Cyberjaya Sports Center Logo" class="header-logo">
-    </a>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home Page</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="register.html">Sign Up Page</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </nav>
-</header>
-    
-    <main>
-    <h2>Create Your Account</h2>
-    <p><b>Join the Cyberjaya Sports Center community to start booking courts so that you can enjoy our facilities!!!</b></p>
-
-    <form action="#">
-        <table>
-            <tr>
-                <td><label for="fname">Full Name:</label></td>
-            <td><input type="text" id="fname" name="fullname" required></td>
-            </tr>
-            <tr>
-                 <td><label for="email">Email Address:</label></td>
-                <td><input type="text" id="email" name="email" required></td>
-            </tr>
-            <tr>
-                <td><label for="id">Student/Staff ID:</label></td>
-                <td><input type="text" id="id" name="mmu_id" placeholder="e.g. 123456789"></td>
-            </tr>
-            <tr>
-                <td><label for="pass">Password:</label></td>
-                <td><input type="password" id="pass" name="password" required></td>
-            </tr>
-            <tr>
-             <td><label>Preferred Sport:</label></td>
-             <td>
-                 <select name="sport">
-                     <option value="badminton">Badminton</option>
-                     <option value="futsal">Futsal</option>
-                     <option value="tennis">Tennis</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: center;">
-                    <button type="submit">Register Now</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</main>
+    <div class="login-container">
+        <div class="login-card" style="width: 1000px;">
+            <div class="login-visual user-theme">
+                <div style="background:white; padding:10px; border-radius:10px; margin-bottom:20px;"><img src="images/LogoTopLeft.png" alt="Logo" style="height: 50px; display:block;"></div>
+                <h2>Join the Community</h2>
+                <p>Register once and enjoy seamless bookings across all our sports facilities.</p>
+                <div style="margin-top: 40px;">
+                    <a href="index.html" style="color: white; text-decoration: none; font-size: 0.9rem;">← Back to Home</a>
+                </div>
+            </div>
+            
+            <div class="login-form-side">
+                <h3>Create Account</h3>
+                <form action="login.html">
+                    <div style="display: flex; gap: 15px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Full Name</label>
+                            <input type="text" id="fname" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Student/Staff ID</label>
+                            <input type="text" id="id" placeholder="e.g. 123456789">
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Preferred Sport</label>
+                            <select name="sport">
+                                <option value="badminton">Badminton</option>
+                                <option value="futsal">Futsal</option>
+                                <option value="tennis">Tennis</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="pass" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-login user-btn">Register Now</button>
+                    
+                    <div style="margin-top: 20px; text-align: center; font-size: 0.9rem;">
+                        Already have an account? <a href="login.html" style="color: var(--user-color); font-weight: bold;">Login here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

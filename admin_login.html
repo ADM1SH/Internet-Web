@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Portal - Probook Sports</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-visual">
+                <div style="background:white; padding:10px; border-radius:10px; margin-bottom:20px;"><img src="images/LogoTopLeft.png" alt="Logo" style="height: 50px; display:block;"></div>
+                <h2>Staff Portal</h2>
+                <p>Manage bookings, facilities, and system operations with ease.</p>
+                <div style="margin-top: 40px;">
+                    <a href="index.html" style="color: white; text-decoration: none; font-size: 0.9rem;">← Back to Public Website</a>
+                </div>
+            </div>
+            
+            <div class="login-form-side">
+                <h3>Welcome Back</h3>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Staff Username</label>
+                        <input type="text" id="username" placeholder="e.g. admin" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-login staff-btn">Login to Dashboard</button>
+                    
+                    <p id="errorMsg" style="color: #e74c3c; text-align: center; margin-top: 20px; display: none; font-weight: bold;">
+                        Invalid credentials!
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin_login.js"></script>
+</body>
+</html>

@@ -8,15 +8,15 @@ window.onload = function() {
     document.getElementById("playerForm").onsubmit = function(e) {
         e.preventDefault();
 
-        var name = document.getElementById("playerName").value;
-        var phone = document.getElementById("playerPhone").value;
-        var email = document.getElementById("playerEmail").value;
-        var status = document.getElementById("playerStatus").value;
-        var index = document.getElementById("playerIndex").value;
+        const name = document.getElementById("playerName").value;
+        const phone = document.getElementById("playerPhone").value;
+        const email = document.getElementById("playerEmail").value;
+        const status = document.getElementById("playerStatus").value;
+        const index = document.getElementById("playerIndex").value;
 
-        var playerList = JSON.parse(localStorage.getItem("playerList")) || [];
+        const playerList = JSON.parse(localStorage.getItem("playerList")) || [];
 
-        var playerData = {
+        const playerData = {
             name: name,
             phone: phone,
             email: email,
@@ -38,7 +38,7 @@ window.onload = function() {
 };
 
 function loadPlayers() {
-    var playerList = JSON.parse(localStorage.getItem("playerList")) || [];
+    let playerList = JSON.parse(localStorage.getItem("playerList")) || [];
 
     if (playerList.length === 0) {
         playerList = [
@@ -48,46 +48,24 @@ function loadPlayers() {
         localStorage.setItem("playerList", JSON.stringify(playerList));
     }
 
-    var tbody = document.querySelector("#playersTable tbody");
-    tbody.innerHTML = "";
-
-    for (var i = 0; i < playerList.length; i++) {
-        var player = playerList[i];
-        var row = tbody.insertRow();
-
-        row.insertCell(0).innerHTML = player.name;
-        row.insertCell(1).innerHTML = player.phone;
-        row.insertCell(2).innerHTML = player.email;
-        row.insertCell(3).innerHTML = player.status;
-
-        var actionCell = row.insertCell(4);
-
-        var editBtn = document.createElement("button");
-        editBtn.innerHTML = "Edit";
-        editBtn.className = "edit-btn";
-        editBtn.onclick = (function(idx) {
-            return function() {
-                editPlayer(idx);
-            };
-        })(i);
-
-        var deleteBtn = document.createElement("button");
-        deleteBtn.innerHTML = "Delete";
-        deleteBtn.className = "delete-btn";
-        deleteBtn.onclick = (function(idx) {
-            return function() {
-                deletePlayer(idx);
-            };
-        })(i);
-
-        actionCell.appendChild(editBtn);
-        actionCell.appendChild(deleteBtn);
-    }
+    const tbody = document.querySelector("#playersTable tbody");
+    tbody.innerHTML = playerList.map((player, i) => `
+        <tr>
+            <td>${player.name}</td>
+            <td>${player.phone}</td>
+            <td>${player.email}</td>
+            <td>${player.status}</td>
+            <td>
+                <button class="edit-btn" onclick="editPlayer(${i})">Edit</button>
+                <button class="delete-btn" onclick="deletePlayer(${i})">Delete</button>
+            </td>
+        </tr>
+    `).join("");
 }
 
 function editPlayer(index) {
-    var playerList = JSON.parse(localStorage.getItem("playerList"));
-    var player = playerList[index];
+    const playerList = JSON.parse(localStorage.getItem("playerList"));
+    const player = playerList[index];
 
     document.getElementById("playerName").value = player.name;
     document.getElementById("playerPhone").value = player.phone;
@@ -101,7 +79,7 @@ function editPlayer(index) {
 
 function deletePlayer(index) {
     if (confirm("Delete this player record?")) {
-        var playerList = JSON.parse(localStorage.getItem("playerList"));
+        const playerList = JSON.parse(localStorage.getItem("playerList"));
         playerList.splice(index, 1);
         localStorage.setItem("playerList", JSON.stringify(playerList));
         loadPlayers();
