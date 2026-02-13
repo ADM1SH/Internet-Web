@@ -1,3 +1,4 @@
+<!-- This page lets admins manage and update all the court bookings. -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,10 @@
             </div>
 
             <div class="card">
-                <h2>All Court Bookings</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>All Court Bookings</h2>
+                    <input type="text" id="bookingSearch" placeholder="Search by customer or court..." style="width: 250px; padding: 10px; margin: 0;">
+                </div>
                 <table id="bookingsTable">
                     <thead>
                         <tr>
