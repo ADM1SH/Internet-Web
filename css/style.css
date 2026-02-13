@@ -21,7 +21,6 @@ body {
     line-height: 1.6;
 }
 
-/* New Login Layouts */
 .login-container {
     display: flex;
     min-height: 100vh;
@@ -83,7 +82,6 @@ body {
     color: var(--text-color);
 }
 
-/* Header & Navigation */
 header {
     background-color: var(--white);
     padding: 0.5rem 5%;
@@ -116,22 +114,13 @@ nav ul li a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 600;
-    padding: 5px 10px;
-    transition: var(--transition);
 }
 
-nav ul li a:hover, nav ul li a.active {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
-}
-
-/* General Image Fixes */
 img {
     max-width: 100%;
     height: auto;
 }
 
-/* Main Content Containers */
 main, .container {
     max-width: 1000px;
     margin: 40px auto;
@@ -139,7 +128,6 @@ main, .container {
     text-align: center;
 }
 
-/* Typography */
 h2 {
     color: var(--primary-color);
     padding-bottom: 10px;
@@ -152,14 +140,12 @@ h3 {
     color: var(--primary-color);
 }
 
-/* Centering Lists */
 main ul, main ol, .container ul, .container ol {
     display: inline-block;
     text-align: left;
     margin: 20px auto;
 }
 
-/* Centering Images and Media in Main */
 main img, main video, .container img {
     display: block;
     margin: 20px auto;
@@ -167,7 +153,6 @@ main img, main video, .container img {
     box-shadow: var(--shadow);
 }
 
-/* Forms */
 .input-group {
     margin-bottom: 25px;
 }
@@ -196,7 +181,6 @@ input:focus, select:focus, textarea:focus {
     outline: none;
 }
 
-/* Buttons */
 button, .payButton, .save-btn, .btn-login, .staff-btn, .user-btn {
     background: var(--primary-color);
     color: var(--white);
@@ -220,8 +204,8 @@ button:hover, .payButton:hover, .save-btn:hover, .btn-login:hover {
     box-shadow: 0 8px 20px rgba(10, 108, 116, 0.3);
 }
 
-button:active, .payButton:active, .save-btn:active, .btn-login:active {
-    transform: translateY(-1px) scale(0.98);
+button:active {
+    transform: translateY(-1px);
 }
 
 .user-btn {
@@ -241,7 +225,6 @@ button:active, .payButton:active, .save-btn:active, .btn-login:active {
     width: 100%;
 }
 
-/* Admin Action Buttons */
 .edit-btn, .delete-btn, .cancel-btn, .add-btn, .save-btn {
     padding: 8px 15px !important;
     border: none !important;
@@ -254,7 +237,7 @@ button:active, .payButton:active, .save-btn:active, .btn-login:active {
     text-decoration: none;
     display: inline-block;
     margin-right: 5px;
-    width: auto !important; /* Prevent full width */
+    width: auto !important;
 }
 
 .edit-btn { background-color: #f39c12 !important; }
@@ -269,14 +252,12 @@ button:active, .payButton:active, .save-btn:active, .btn-login:active {
 .save-btn { background-color: var(--primary-color) !important; }
 .save-btn:hover { background-color: var(--primary-hover) !important; }
 
-/* Animation */
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20%, 60% { transform: translateX(-10px); }
     40%, 80% { transform: translateX(10px); }
 }
 
-/* Rest of the styles... */
 .admin-wrapper { display: flex; min-height: 100vh; }
 .sidebar { width: 260px; background-color: var(--primary-color); color: white; position: fixed; height: 100vh; padding: 30px 20px; box-sizing: border-box; }
 .main-content-area { flex: 1; margin-left: 260px; padding: 40px; }
@@ -285,71 +266,6 @@ table { width: 100%; border-collapse: collapse; }
 th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
 th { background-color: var(--primary-color); color: white; }
 
-/* Print Styles */
-@media print {
-    .sidebar, .no-print, button, .add-btn {
-        display: none !important;
-    }
-    .main-content-area {
-        margin-left: 0 !important;
-        padding: 0 !important;
-    }
-    .card {
-        box-shadow: none !important;
-        border: 1px solid #eee !important;
-    }
-    body {
-        background-color: white !important;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    /* Header & Nav */
-    header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
-    
-    /* Layouts */
-    .login-card, .checkout-container {
-        flex-direction: column;
-        width: 100%;
-    }
-    .login-visual, .login-form-side, .main-content, .summary-sidebar {
-        width: 100%;
-        padding: 30px 20px;
-    }
-    
-    /* Admin Portal */
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 15px;
-    }
-    .main-content-area {
-        margin-left: 0;
-        padding: 20px;
-    }
-    .stats-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    /* Tables */
-    table {
-        display: block;
-        overflow-x: auto;
-    }
-}
-
-/* Sidebar Navigation Buttons */
 .nav-link {
     color: rgba(255,255,255,0.8) !important;
     text-decoration: none !important;
@@ -372,4 +288,31 @@ th { background-color: var(--primary-color); color: white; }
     color: var(--primary-color) !important;
     font-weight: bold !important;
     box-shadow: var(--shadow) !important;
+}
+
+.status-paid, .status-confirmed 
+{ 
+    background-color: #2ecc71; 
+    color: white; 
+    border-radius: 20px; 
+    padding: 4px 12px; 
+    font-size: 0.8rem; 
+}
+
+.status-pending 
+{ 
+    background-color: #f1c40f; 
+    color: white; 
+    border-radius: 20px; 
+    padding: 4px 12px; 
+    font-size: 0.8rem; 
+}
+
+.status-cancelled 
+{ 
+    background-color: #e74c3c; 
+    color: white; 
+    border-radius: 20px; 
+    padding: 4px 12px; 
+    font-size: 0.8rem; 
 }

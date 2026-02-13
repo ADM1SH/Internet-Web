@@ -1,4 +1,3 @@
-// This script allows admins to see, edit, or cancel customer court bookings.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");
@@ -6,13 +5,6 @@ window.onload = function() {
 
     loadFacilitiesDropdown();
     loadBookings();
-
-    const bookingSearch = document.getElementById("bookingSearch");
-    if (bookingSearch) {
-        bookingSearch.oninput = function() {
-            loadBookings(this.value.toLowerCase());
-        };
-    }
 
     const bookingForm = document.getElementById("bookingForm");
     if (bookingForm) {
@@ -25,7 +17,7 @@ window.onload = function() {
             const status = document.getElementById("bookStatus").value;
             const index = document.getElementById("bookingIndex").value;
 
-            const bookingList = JSON.parse(localStorage.getItem("bookingList"));
+            const bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
 
             bookingList[index].facility = facility;
             bookingList[index].date = date;
@@ -49,7 +41,7 @@ function loadFacilitiesDropdown() {
     }
 }
 
-function loadBookings(filter = "") {
+function loadBookings() {
     let bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
 
     if (bookingList.length === 0) {
@@ -58,13 +50,6 @@ function loadBookings(filter = "") {
             { customer: "Jane Smith", facility: "Futsal Court A", date: "2026-02-12", time: "20:00", status: "Pending" }
         ];
         localStorage.setItem("bookingList", JSON.stringify(bookingList));
-    }
-
-    if (filter) {
-        bookingList = bookingList.filter(b => 
-            b.customer.toLowerCase().includes(filter) || 
-            b.facility.toLowerCase().includes(filter)
-        );
     }
 
     const tbody = document.querySelector("#bookingsTable tbody");
@@ -84,7 +69,7 @@ function loadBookings(filter = "") {
 }
 
 function showEditForm(index) {
-    const bookingList = JSON.parse(localStorage.getItem("bookingList"));
+    const bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
     const book = bookingList[index];
 
     document.getElementById("displayCustomer").innerHTML = book.customer;
@@ -105,7 +90,7 @@ function hideEditForm() {
 
 function cancelBooking(index) {
     if (confirm("Are you sure you want to cancel this booking?")) {
-        const bookingList = JSON.parse(localStorage.getItem("bookingList"));
+        const bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
         bookingList[index].status = "Cancelled";
         localStorage.setItem("bookingList", JSON.stringify(bookingList));
         loadBookings();

@@ -1,4 +1,3 @@
-// This script is used to manage staff members and their roles in the system.
 window.onload = function() {
     if (document.getElementById("brandName")) {
         document.getElementById("brandName").classList.add("active");
@@ -14,15 +13,16 @@ window.onload = function() {
             const name = document.getElementById("name").value;
             const role = document.getElementById("role").value;
             const email = document.getElementById("email").value;
+            const pass = "staff123"; 
 
             const staffList = JSON.parse(localStorage.getItem("staffList")) || [];
 
-            staffList.push({ name, role, email });
+            staffList.push({ name, role, email, pass });
             localStorage.setItem("staffList", JSON.stringify(staffList));
 
             this.reset();
             loadStaff();
-            alert("Staff member added successfully!");
+            alert("Staff member added successfully! Default password is: staff123");
         };
     }
 };

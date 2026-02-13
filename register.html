@@ -1,14 +1,11 @@
-<!-- This is the sign-up page where new players can create an account. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Cyberjaya Sports Center</title>
+    <title>Register - Cyberjaya Sports Center</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <script src="js/common.js"></script>
     <div class="login-container">
         <div class="login-card" style="width: 1000px;">
             <div class="login-visual user-theme">
@@ -22,7 +19,7 @@
             
             <div class="login-form-side">
                 <h3>Create Account</h3>
-                <form action="login.html">
+                <form id="registrationForm">
                     <div style="display: flex; gap: 15px;">
                         <div class="input-group" style="flex: 1;">
                             <label>Full Name</label>
@@ -63,5 +60,7 @@
             </div>
         </div>
     </div>
+
+    <script src="js/register.js"></script>
 </body>
 </html>

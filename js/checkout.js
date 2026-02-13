@@ -1,75 +1,51 @@
-// This script manages the payment page. It shows different payment options and saves the final booking data.
 window.onload = function() 
 {
-    const brandName = document.getElementById("brandName");
-    if (brandName) brandName.classList.add("active");
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (!loggedInUser) {
+        alert("Please login before proceeding to checkout.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    const selectedCourt = localStorage.getItem("selectedCourt") || "No Court Selected";
+    const selectedPrice = localStorage.getItem("selectedPrice") || "0.00";
+    const today = new Date().toISOString().split('T')[0]; 
+
+    const summaryCard = document.querySelector('.summary-card');
+    if (summaryCard) {
+        summaryCard.innerHTML = `
+            <h3>Booking Summary</h3>
+            <p><strong>Court:</strong> ${selectedCourt}</p>
+            <p><strong>Date:</strong> ${today}</p>
+            <hr>
+            <div class="total-line">
+                <span>Total Amount:</span> 
+                <span style="font-size: 1.5rem; color: #0A6C74; font-weight: bold;">RM ${selectedPrice}</span>
+            </div>
+            <button type="submit" form="paymentForm" class="payButton">Confirm & Pay</button>
+        `;
+    }
 
     const form = document.getElementById('paymentForm');
-    const cardDetails = document.getElementById('cardDetails');
-    const qrDetails = document.getElementById('qrDetails');
-    const bankDetails = document.getElementById('bankDetails');
-    
-    const cardNum = document.getElementById('cardNumber');
-    const cardExp = document.getElementById('cardExpiry');
-    const cardCvv = document.getElementById('cardCVV');
+    form.onsubmit = function(e) {
+        e.preventDefault();
 
-    document.querySelectorAll('input[name="pay"]').forEach(radio => 
-    {
-        radio.addEventListener('change', function() 
-        {
-            cardDetails.style.display = (this.id === 'radioCard') ? 'block' : 'none';
-            bankDetails.style.display = (this.id === 'radioBank') ? 'block' : 'none';
-            qrDetails.style.display = (this.id === 'radioQR') ? 'block' : 'none';
-            
-            const isCard = this.id === 'radioCard';
-            cardNum.required = isCard;
-            cardExp.required = isCard;
-            cardCvv.required = isCard;
-        });
-    });
+        const bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
+        const user = JSON.parse(localStorage.getItem("loggedInUser")) || { name: "Guest" };
 
-    const cardDisplay = document.getElementById('cardType');
-    if (cardNum && cardDisplay) 
-    {
-        cardNum.addEventListener('input', function() 
-        {
-            const val = this.value;
-            if (val.startsWith('4')) cardDisplay.innerText = "VISA";
-            else if (val.startsWith('5')) cardDisplay.innerText = "MASTERCARD";
-            else cardDisplay.innerText = "";
-        });
-    }
-
-    if (form) {
-        form.onsubmit = function(e) 
-        {
-            e.preventDefault(); 
-
-            if (document.getElementById('radioBank').checked) 
-            {
-                const bankUrl = document.getElementById('bankSelect').value;
-                if (!bankUrl) 
-                { 
-                    alert("Please select a bank!"); 
-                    return; 
-                }
-                window.open(bankUrl, '_blank');
-                window.location.href = "feedback.html";
-            } 
-            else if (document.getElementById('radioQR').checked) 
-            {
-                const receipt = document.getElementById('receiptUpload');
-                if (!receipt.files || !receipt.files.length) 
-                { 
-                    alert("Please upload your receipt!"); 
-                    return; 
-                }
-                window.location.href = "feedback.html";
-            } 
-            else if (document.getElementById('radioCard').checked) 
-            {
-                window.location.href = "feedback.html";
-            }
+        const newBooking = {
+            customer: user.name,
+            facility: selectedCourt,
+            date: today,
+            time: "Scheduled",
+            price: parseFloat(selectedPrice),
+            status: "Confirmed"
         };
-    }
+
+        bookingList.push(newBooking);
+        localStorage.setItem("bookingList", JSON.stringify(bookingList));
+        
+        alert("Payment Successful!");
+        window.location.href = "feedback.html";
+    };
 };
