@@ -84,7 +84,7 @@
                     const selectedDate = document.getElementById('bookingDate').value;
                     const selectedTime = document.getElementById('bookingTime').value;
 
-                    const bookingList = JSON.parse(localStorage.getItem('bookingList')) || [];
+                    const bookingList = db.getBookings();
                     const isAlreadyBooked = bookingList.some(b => 
                         b.facility === facility && 
                         b.date === selectedDate && 
@@ -94,6 +94,13 @@
 
                     if (isAlreadyBooked) {
                         alert(`SORRY! ${facility} is already booked for ${selectedDate} at ${selectedTime}. Please choose another slot.`);
+                        return;
+                    }
+
+                    const currentUser = db.getCurrentUser();
+                    if (!currentUser) {
+                        alert("Please login or register to proceed with booking.");
+                        window.location.href = "login.html";
                         return;
                     }
 

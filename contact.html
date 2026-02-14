@@ -20,6 +20,8 @@
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="join_us.html">Join Us</a></li>
+            <li><a href="register.html">Sign Up</a></li>
+            <li><a href="login.html">Login</a></li>
             <li><a href="admin_login.html">Staff Portal</a></li>
             </ul>
         </nav>
@@ -31,26 +33,26 @@
             <h2>Contact Us</h2>
             <p>Have questions? Reach out to the Cyberjaya Sports Center team so that we can assist you promptly and efficiently!</p>
             
-            <div style="display: flex; gap: 40px; text-align: left; margin-top: 40px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 300px;">
+            <div class="contact-grid">
+                <div class="contact-info-box">
                     <h3>Our Details</h3>
-                    <table style="box-shadow: none; margin-top: 0;">
+                    <table style="box-shadow: none; margin-top: 0; background: transparent;">
                         <tr>
-                            <td style="font-weight: bold; width: 100px;">Address:</td>
-                            <td>Mutiara Ville, Cyberjaya, Malaysia</td>
+                            <td style="font-weight: bold; width: 100px; border: none;">Address:</td>
+                            <td style="border: none;">Mutiara Ville, Cyberjaya, Malaysia</td>
                         </tr>
                         <tr>
-                            <td style="font-weight: bold;">Phone:</td>
-                            <td>+60 12-677 6767</td>
+                            <td style="font-weight: bold; border: none;">Phone:</td>
+                            <td style="border: none;">+60 12-677 6767</td>
                         </tr>
                         <tr>
-                            <td style="font-weight: bold;">Email:</td>
-                            <td>67CyberSport@gmail.com</td>
+                            <td style="font-weight: bold; border: none;">Email:</td>
+                            <td style="border: none;">67CyberSport@gmail.com</td>
                         </tr>
                     </table>
 
-                    <h3 style="margin-top: 30px;">Find Us on Map</h3>
-                    <div style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);">
+                    <h3 style="margin-top: 20px;">Find Us on Map</h3>
+                    <div class="map-container">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.6246567577687!2d101.63152697584427!3d2.9237827544948725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdb6dc8a70d5a7%3A0x9001ab39468194d2!2sCyberjaya%2C%2063000%20Cyberjaya%2C%20Selangor!5e0!3m2!1sen!2smy!4v1770901573905!5m2!1sen!2smy" 
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
@@ -58,9 +60,9 @@
                     </div>
                 </div>
 
-                <div style="flex: 1; min-width: 300px;">
+                <div class="contact-form-box">
                     <h3>Send us a Message</h3>
-                    <form action="#" style="padding: 0; box-shadow: none;">
+                    <form action="#" class="contact-form">
                         <div class="input-group">
                             <label>Your Name</label>
                             <input type="text" name="name" placeholder="Full Name" required>

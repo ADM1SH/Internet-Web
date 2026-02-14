@@ -1,103 +1,67 @@
-window.onload = function() {
-    if (document.getElementById("brandName")) {
-        document.getElementById("brandName").classList.add("active");
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const renderPlayers = () => {
+        const players = db.getPlayers();
+        const tbody = document.querySelector("#playersTable tbody");
+        if (tbody) {
+            tbody.innerHTML = players.map((p, index) => `
+                <tr>
+                    <td>${p.name}</td>
+                    <td>${p.email}</td>
+                    <td>${p.phone}</td>
+                    <td>${p.status}</td>
+                    <td>
+                        <button class="edit-btn" onclick="editPlayer(${index})">Edit</button>
+                        <button class="delete-btn" onclick="deletePlayer(${index})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+    };
 
-    loadPlayers();
+    const form = document.getElementById('playerForm');
+    if (form) {
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const index = document.getElementById('playerIndex').value;
+            const players = db.getPlayers();
+            const data = {
+                name: document.getElementById('playerName').value,
+                email: document.getElementById('playerEmail').value,
+                phone: document.getElementById('playerPhone').value,
+                status: document.getElementById('playerStatus').value,
+                password: players[index]?.password || "123"
+            };
 
-    const playerSearch = document.getElementById("playerSearch");
-    if (playerSearch) {
-        playerSearch.oninput = function() {
-            loadPlayers(this.value.toLowerCase());
+            if (index === "") {
+                players.push(data);
+            } else {
+                players[index] = data;
+            }
+
+            db.savePlayers(players);
+            form.reset();
+            document.getElementById('playerIndex').value = "";
+            renderPlayers();
         };
     }
 
-    document.getElementById("playerForm").onsubmit = function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById("playerName").value;
-        const phone = document.getElementById("playerPhone").value;
-        const email = document.getElementById("playerEmail").value;
-        const status = document.getElementById("playerStatus").value;
-        const index = document.getElementById("playerIndex").value;
-
-        const playerList = JSON.parse(localStorage.getItem("playerList")) || [];
-
-        const playerData = { name, phone, email, status };
-
-        if (index === "") {
-            playerList.push(playerData);
-        } else {
-            playerList[index] = playerData;
-        }
-
-        localStorage.setItem("playerList", JSON.stringify(playerList));
-
-        resetForm();
-        loadPlayers();
-        alert("Player information saved!");
+    window.editPlayer = (index) => {
+        const p = db.getPlayers()[index];
+        document.getElementById('playerIndex').value = index;
+        document.getElementById('playerName').value = p.name;
+        document.getElementById('playerEmail').value = p.email;
+        document.getElementById('playerPhone').value = p.phone;
+        document.getElementById('playerStatus').value = p.status;
     };
-};
 
-function loadPlayers(filter = "") {
-    let playerList = JSON.parse(localStorage.getItem("playerList")) || [];
+    window.deletePlayer = (index) => {
+        if (confirm("Delete player?")) {
+            const players = db.getPlayers();
+            players.splice(index, 1);
+            db.savePlayers(players);
+            renderPlayers();
+        }
+    };
 
-    if (playerList.length === 0) {
-        playerList = [
-            { name: "John Doe", phone: "012-3456789", email: "john@example.com", status: "Active" },
-            { name: "Jane Smith", phone: "019-8765432", email: "jane@test.com", status: "Inactive" }
-        ];
-        localStorage.setItem("playerList", JSON.stringify(playerList));
-    }
-
-    if (filter) {
-        playerList = playerList.filter(p => 
-            p.name.toLowerCase().includes(filter) || 
-            p.email.toLowerCase().includes(filter)
-        );
-    }
-
-    const tbody = document.querySelector("#playersTable tbody");
-    tbody.innerHTML = playerList.map((player, i) => `
-        <tr>
-            <td>${player.name}</td>
-            <td>${player.phone}</td>
-            <td>${player.email}</td>
-            <td>${player.status}</td>
-            <td>
-                <button class="edit-btn" onclick="editPlayer(${i})">Edit</button>
-                <button class="delete-btn" onclick="deletePlayer(${i})">Delete</button>
-            </td>
-        </tr>
-    `).join("");
-}
-
-function editPlayer(index) {
-    const playerList = JSON.parse(localStorage.getItem("playerList"));
-    const player = playerList[index];
-
-    document.getElementById("playerName").value = player.name;
-    document.getElementById("playerPhone").value = player.phone;
-    document.getElementById("playerEmail").value = player.email;
-    document.getElementById("playerStatus").value = player.status;
-    document.getElementById("playerIndex").value = index;
-
-    document.getElementById("formTitle").innerHTML = "Update Player: " + player.name;
-    document.getElementById("submitBtn").innerHTML = "Update Player";
-}
-
-function deletePlayer(index) {
-    if (confirm("Delete this player record?")) {
-        const playerList = JSON.parse(localStorage.getItem("playerList"));
-        playerList.splice(index, 1);
-        localStorage.setItem("playerList", JSON.stringify(playerList));
-        loadPlayers();
-    }
-}
-
-function resetForm() {
-    document.getElementById("playerForm").reset();
-    document.getElementById("playerIndex").value = "";
-    document.getElementById("formTitle").innerHTML = "Add/Update Player";
-    document.getElementById("submitBtn").innerHTML = "Save Player";
-}
+    renderPlayers();
+});

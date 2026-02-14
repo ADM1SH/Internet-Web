@@ -19,7 +19,7 @@
 
 .star.selected 
 {
-    color: #0A6C74; 
+    color: var(--primary-color); 
 }
 
 #commentBox 
@@ -37,5 +37,5 @@
 #commentBox:focus 
 {
     outline: none;
-    border-color: #0A6C74;
+    border-color: var(--primary-color);
 }

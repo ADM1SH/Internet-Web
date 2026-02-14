@@ -1,29 +1,28 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', () => {
     const regForm = document.querySelector('form');
-    
-    regForm.onsubmit = function(e) {
-        e.preventDefault();
+    if (regForm) {
+        regForm.onsubmit = function(e) {
+            e.preventDefault();
+            const newUser = {
+                name: document.getElementById('fname').value,
+                email: document.getElementById('email').value,
+                id: document.getElementById('id').value,
+                sport: document.querySelector('select[name="sport"]').value,
+                password: document.getElementById('pass').value,
+                phone: "",
+                status: "Active"
+            };
 
-        const name = document.getElementById('fname').value;
-        const email = document.getElementById('email').value;
-        const studentId = document.getElementById('id').value;
-        const password = document.getElementById('pass').value;
+            const players = db.getPlayers();
+            if (players.find(p => p.email === newUser.email)) {
+                alert("Email already registered!");
+                return;
+            }
 
-        
-        const playerList = JSON.parse(localStorage.getItem("playerList")) || [];
-
-        const newPlayer = {
-            name: name,
-            email: email,
-            phone: studentId,
-            status: "Active",
-            password: password
+            players.push(newUser);
+            db.savePlayers(players);
+            alert("Registration successful! Please login.");
+            window.location.href = 'login.html';
         };
-
-        playerList.push(newPlayer);
-        localStorage.setItem("playerList", JSON.stringify(playerList));
-
-        alert("Registration successful! You can now login.");
-        window.location.href = "login.html";
-    };
-};
+    }
+});

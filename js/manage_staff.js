@@ -1,60 +1,68 @@
-window.onload = function() {
-    if (document.getElementById("brandName")) {
-        document.getElementById("brandName").classList.add("active");
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const renderStaff = () => {
+        const staff = db.getStaff();
+        const tbody = document.querySelector("#staffTable tbody");
+        if (tbody) {
+            tbody.innerHTML = staff.map((s, index) => `
+                <tr>
+                    <td>${s.name}</td>
+                    <td>${s.role}</td>
+                    <td>${s.username}</td>
+                    <td>${s.email}</td>
+                    <td>
+                        <button class="edit-btn" onclick="editStaff(${index})">Edit</button>
+                        <button class="delete-btn" onclick="deleteStaff(${index})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+    };
 
-    loadStaff();
-
-    const staffForm = document.getElementById("addStaffForm");
-    if (staffForm) {
-        staffForm.onsubmit = function(e) {
+    const form = document.getElementById('staffForm');
+    if (form) {
+        form.onsubmit = (e) => {
             e.preventDefault();
+            const index = document.getElementById('staffIndex').value;
+            const staff = db.getStaff();
+            const data = {
+                name: document.getElementById('staffName').value,
+                role: document.getElementById('staffRole').value,
+                username: document.getElementById('staffUser').value,
+                email: document.getElementById('staffEmail').value,
+                password: document.getElementById('staffPass').value
+            };
 
-            const name = document.getElementById("name").value;
-            const role = document.getElementById("role").value;
-            const email = document.getElementById("email").value;
+            if (index === "") {
+                staff.push(data);
+            } else {
+                staff[index] = data;
+            }
 
-            const staffList = JSON.parse(localStorage.getItem("staffList")) || [];
-
-            staffList.push({ name, role, email });
-            localStorage.setItem("staffList", JSON.stringify(staffList));
-
-            this.reset();
-            loadStaff();
-            alert("Staff member added successfully!");
+            db.saveStaff(staff);
+            form.reset();
+            document.getElementById('staffIndex').value = "";
+            renderStaff();
         };
     }
-};
 
-function loadStaff() {
-    let staffList = JSON.parse(localStorage.getItem("staffList")) || [];
+    window.editStaff = (index) => {
+        const s = db.getStaff()[index];
+        document.getElementById('staffIndex').value = index;
+        document.getElementById('staffName').value = s.name;
+        document.getElementById('staffRole').value = s.role;
+        document.getElementById('staffUser').value = s.username;
+        document.getElementById('staffEmail').value = s.email;
+        document.getElementById('staffPass').value = s.password;
+    };
 
-    if (staffList.length === 0) {
-        staffList = [
-            { name: "Ali Hassan", role: "Receptionist", email: "ali@probook.com" },
-            { name: "Siti Aminah", role: "Maintenance Crew", email: "siti@probook.com" }
-        ];
-        localStorage.setItem("staffList", JSON.stringify(staffList));
-    }
+    window.deleteStaff = (index) => {
+        if (confirm("Delete staff member?")) {
+            const staff = db.getStaff();
+            staff.splice(index, 1);
+            db.saveStaff(staff);
+            renderStaff();
+        }
+    };
 
-    const tbody = document.querySelector("#staffTable tbody");
-    tbody.innerHTML = staffList.map((staff, i) => `
-        <tr>
-            <td>${staff.name}</td>
-            <td>${staff.role}</td>
-            <td>${staff.email}</td>
-            <td>
-                <button class="delete-btn" onclick="deleteStaff(${i})">Delete</button>
-            </td>
-        </tr>
-    `).join("");
-}
-
-function deleteStaff(index) {
-    if (confirm("Are you sure you want to delete this staff member?")) {
-        const staffList = JSON.parse(localStorage.getItem("staffList"));
-        staffList.splice(index, 1);
-        localStorage.setItem("staffList", JSON.stringify(staffList));
-        loadStaff();
-    }
-}
+    renderStaff();
+});

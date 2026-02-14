@@ -1,34 +1,24 @@
-window.onload = function()
-{
-    const updateClock = () => {
-        const now = new Date();
-        const clockEl = document.getElementById('currentTime');
-        if (clockEl) clockEl.innerText = now.toLocaleString();
-    };
+document.addEventListener('DOMContentLoaded', () => {
+    const players = db.getPlayers();
+    const staff = db.getStaff();
+    const bookings = db.getBookings();
 
-    setInterval(updateClock, 1000);
-    updateClock();
+    document.getElementById('totalMembers').innerText = players.length;
+    document.getElementById('totalStaff').innerText = staff.length;
+    document.getElementById('totalBookings').innerText = bookings.length;
 
-    const bookings = JSON.parse(localStorage.getItem('bookingList')) || [];
-    const facilities = JSON.parse(localStorage.getItem('facilityList')) || [];
+    const revenue = bookings.reduce((sum, b) => sum + parseFloat(b.price || 0), 0);
+    document.getElementById('totalRevenue').innerText = `RM ${revenue.toFixed(2)}`;
 
-    const prices = {};
-    facilities.forEach(f => prices[f.name] = parseFloat(f.price));
-
-    const activeBookings = bookings.filter(b => b.status === "Confirmed");
-    const totalRevenue = activeBookings.reduce((sum, b) => sum + (prices[b.facility] || 0), 0);
-
-    const statCards = document.querySelectorAll('.stat-number');
-    if (statCards.length >= 2) {
-        statCards[0].innerText = activeBookings.length;
-        statCards[1].innerText = "RM " + totalRevenue.toFixed(2);
+    const tbody = document.querySelector('#recentBookingsTable tbody');
+    if (tbody) {
+        tbody.innerHTML = bookings.slice(-5).reverse().map(b => `
+            <tr>
+                <td>${b.customer}</td>
+                <td>${b.facility}</td>
+                <td>${b.date}</td>
+                <td><span class="status-pill status-paid">${b.status}</span></td>
+            </tr>
+        `).join('');
     }
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.onclick = function() {
-            if (this.innerText !== "Logout") {
-                console.log("Navigating to: " + this.innerText);
-            }
-        };
-    });
-};
+});

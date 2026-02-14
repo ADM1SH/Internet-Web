@@ -1,5 +1,4 @@
 window.onload = function() {
-    
     const tempBooking = JSON.parse(localStorage.getItem('tempBooking'));
     if (!tempBooking) {
         alert("No booking found! Redirecting to courts...");
@@ -7,7 +6,6 @@ window.onload = function() {
         return;
     }
 
-    
     const summaryCard = document.querySelector('.summary-card');
     if(summaryCard) {
         const paragraphs = summaryCard.querySelectorAll('p');
@@ -19,14 +17,12 @@ window.onload = function() {
         if(totalSpan) totalSpan.innerText = "RM " + parseFloat(tempBooking.price).toFixed(2);
     }
 
-    
     const form = document.getElementById('paymentForm');
     document.querySelectorAll('input[name="pay"]').forEach(radio => {
         radio.addEventListener('change', function() {
             document.getElementById('cardDetails').style.display = (this.id === 'radioCard') ? 'block' : 'none';
             document.getElementById('bankDetails').style.display = (this.id === 'radioBank') ? 'block' : 'none';
             document.getElementById('qrDetails').style.display = (this.id === 'radioQR') ? 'block' : 'none';
-            
             
             const isCard = (this.id === 'radioCard');
             document.getElementById('cardNumber').required = isCard;
@@ -35,15 +31,12 @@ window.onload = function() {
         });
     });
 
-    
     form.onsubmit = function(e) {
         e.preventDefault();
 
-        
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const currentUser = db.getCurrentUser();
         const customerName = currentUser ? currentUser.name : "Guest User";
 
-        
         const finalBooking = {
             id: Date.now(), 
             customer: customerName,
@@ -55,12 +48,7 @@ window.onload = function() {
             paymentMethod: document.querySelector('input[name="pay"]:checked').nextSibling.textContent.trim()
         };
 
-       ASE
-        const bookingList = JSON.parse(localStorage.getItem("bookingList")) || [];
-        bookingList.push(finalBooking);
-        localStorage.setItem("bookingList", JSON.stringify(bookingList));
-
-        
+        db.addBooking(finalBooking);
         localStorage.removeItem("tempBooking"); 
         window.location.href = "feedback.html";
     };
