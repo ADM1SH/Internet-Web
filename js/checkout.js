@@ -1,10 +1,5 @@
 window.onload = function() {
     const tempBooking = JSON.parse(localStorage.getItem('tempBooking'));
-    if (!tempBooking) {
-        alert("No booking found! Redirecting to courts...");
-        window.location.href = "court_list.html";
-        return;
-    }
 
     const summaryCard = document.querySelector('.summary-card');
     if(summaryCard) {
