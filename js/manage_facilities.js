@@ -61,5 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    window.resetForm = () => {
+        form.reset();
+        document.getElementById('facilityIndex').value = "";
+        document.getElementById('formTitle').innerText = "Add/Update Facility";
+    };
+
     renderFacilities();
 });

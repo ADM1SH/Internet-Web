@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${s.name}</td>
                     <td>${s.role}</td>
                     <td>${s.username}</td>
-                    <td>${s.email}</td>
                     <td>
                         <button class="edit-btn" onclick="editStaff(${index})">Edit</button>
                         <button class="delete-btn" onclick="deleteStaff(${index})">Delete</button>
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: document.getElementById('staffName').value,
                 role: document.getElementById('staffRole').value,
                 username: document.getElementById('staffUser').value,
-                email: document.getElementById('staffEmail').value,
+                email: "",
                 password: document.getElementById('staffPass').value
             };
 
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('staffName').value = s.name;
         document.getElementById('staffRole').value = s.role;
         document.getElementById('staffUser').value = s.username;
-        document.getElementById('staffEmail').value = s.email;
         document.getElementById('staffPass').value = s.password;
     };
 
@@ -62,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
             db.saveStaff(staff);
             renderStaff();
         }
+    };
+
+    window.resetForm = () => {
+        form.reset();
+        document.getElementById('staffIndex').value = "";
     };
 
     renderStaff();

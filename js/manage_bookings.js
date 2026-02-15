@@ -31,10 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.editBooking = (index) => {
         const bookings = db.getBookings();
         const b = bookings[index];
+        const facilities = db.getFacilities();
+        
+        const facSelect = document.getElementById('bookFacility');
+        facSelect.innerHTML = facilities.map(f => `<option value="${f.name}">${f.name}</option>`).join('');
+
         document.getElementById('bookingIndex').value = index;
-        document.getElementById('editCustomer').value = b.customer;
-        document.getElementById('editDate').value = b.date;
-        document.getElementById('editStatus').value = b.status;
+        document.getElementById('displayCustomer').innerText = b.customer;
+        document.getElementById('bookFacility').value = b.facility;
+        document.getElementById('bookDate').value = b.date;
+        document.getElementById('bookTime').value = b.time;
+        document.getElementById('bookStatus').value = b.status;
         document.getElementById('editFormContainer').style.display = 'block';
     };
 
@@ -45,15 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const index = document.getElementById('bookingIndex').value;
             const bookings = db.getBookings();
             
-            bookings[index].customer = document.getElementById('editCustomer').value;
-            bookings[index].date = document.getElementById('editDate').value;
-            bookings[index].status = document.getElementById('editStatus').value;
+            bookings[index].facility = document.getElementById('bookFacility').value;
+            bookings[index].date = document.getElementById('bookDate').value;
+            bookings[index].time = document.getElementById('bookTime').value;
+            bookings[index].status = document.getElementById('bookStatus').value;
 
             db.saveBookings(bookings);
             document.getElementById('editFormContainer').style.display = 'none';
             renderBookings();
         };
     }
+
+    window.hideEditForm = () => {
+        document.getElementById('editFormContainer').style.display = 'none';
+    };
 
     renderBookings();
 });

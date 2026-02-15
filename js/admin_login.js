@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
         loginForm.onsubmit = function(e) {
             e.preventDefault();
-            const user = document.getElementById('user').value;
-            const pass = document.getElementById('pass').value;
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
 
             const staffList = db.getStaff();
             const staff = staffList.find(s => s.username === user && s.password === pass);
