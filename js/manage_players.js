@@ -63,5 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    window.resetForm = () => {
+        form.reset();
+        document.getElementById('playerIndex').value = "";
+    };
+
     renderPlayers();
 });
