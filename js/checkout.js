@@ -2,7 +2,8 @@ window.onload = function() {
     const tempBooking = JSON.parse(localStorage.getItem('tempBooking'));
 
     const summaryCard = document.querySelector('.summary-card');
-    if(summaryCard) {
+    if(summaryCard) 
+        {
         const paragraphs = summaryCard.querySelectorAll('p');
         paragraphs.forEach(p => {
             if(p.innerHTML.includes("Court:")) p.innerHTML = `<strong>Court:</strong> ${tempBooking.facility}`;
@@ -13,8 +14,10 @@ window.onload = function() {
     }
 
     const form = document.getElementById('paymentForm');
-    document.querySelectorAll('input[name="pay"]').forEach(radio => {
-        radio.addEventListener('change', function() {
+    document.querySelectorAll('input[name="pay"]').forEach(radio => 
+    {
+        radio.addEventListener('change', function() 
+        {
             document.getElementById('cardDetails').style.display = (this.id === 'radioCard') ? 'block' : 'none';
             document.getElementById('bankDetails').style.display = (this.id === 'radioBank') ? 'block' : 'none';
             document.getElementById('qrDetails').style.display = (this.id === 'radioQR') ? 'block' : 'none';
@@ -26,7 +29,8 @@ window.onload = function() {
         });
     });
 
-    form.onsubmit = function(e) {
+    form.onsubmit = function(e) 
+    {
         e.preventDefault();
 
         const currentUser = db.getCurrentUser();
@@ -45,6 +49,7 @@ window.onload = function() {
 
         db.addBooking(finalBooking);
         localStorage.removeItem("tempBooking"); 
-        window.location.href = "feedback.html";
+        console.log("Booking confirmed and saved:", finalBooking);
+        window.location.href = "feedback.html"; 
     };
 };
